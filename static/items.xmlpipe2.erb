@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sphinx:docset>
+
+<sphinx:schema>
+  <sphinx:field name="name"/>
+  <sphinx:field name="sa"/>
+</sphinx:schema>
+
+<% File.open(File.expand_path('../items.csv', __FILE__), 'r') do |items| %>
+  <% items.read.each_line do |item| %>
+    <% id, name, sa = item.chomp.split(%r{\u0001|\u0002}) %>
+    <sphinx:document id="<%= id %>">
+      <name><%= name %></name>
+      <sa><%= sa %></sa>
+    </sphinx:document>
+  <% end %>
+<% end %>
+
+</sphinx:docset>
