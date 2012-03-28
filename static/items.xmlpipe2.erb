@@ -10,8 +10,8 @@
   <% items.read.each_line do |item| %>
     <% id, name, sa = item.chomp.split(%r{\u0001|\u0002}) %>
     <sphinx:document id="<%= id %>">
-      <name><%= name %></name>
-      <sa><%= sa %></sa>
+      <name><%= name.encode(xml: :text) %></name>
+      <sa><%= sa.encode(xml: :text) %></sa>
     </sphinx:document>
   <% end %>
 <% end %>
