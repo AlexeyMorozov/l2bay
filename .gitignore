@@ -16,3 +16,4 @@
 
 /sphinxsearch
 /searchd.query.log
+/searchd.development.pid
