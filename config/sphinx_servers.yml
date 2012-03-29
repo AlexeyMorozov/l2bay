@@ -1,6 +1,6 @@
 development: &defaults
   sphinx_api:
-    - [ localhost, 3312 ]
+    - [ localhost, 9312 ]
   # sphinxql:
   #   - 
   #     :host: localhost
