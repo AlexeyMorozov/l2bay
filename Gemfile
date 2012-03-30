@@ -40,3 +40,5 @@ gem 'jquery-rails'
 gem 'thebes'
 
 gem 'twitter-bootstrap-rails'
+
+gem 'nifty-generators', group: :development
