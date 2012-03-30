@@ -1,0 +1,16 @@
+<% title "Items" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Sa</th>
+  </tr>
+  <% for item in @items %>
+    <tr>
+      <td><%= item.name %></td>
+      <td><%= item.sa %></td>
+      <td><%= link_to "Show", item %></td>
+    </tr>
+  <% end %>
+</table>
+

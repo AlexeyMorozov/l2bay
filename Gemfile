@@ -42,3 +42,5 @@ gem 'thebes'
 gem 'twitter-bootstrap-rails'
 
 gem 'nifty-generators', group: :development
+
+gem "mocha", :group => :test

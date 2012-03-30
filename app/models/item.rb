@@ -1,3 +1,3 @@
-class Item
-  CACHED = YAML::load(File.open(Rails.root.join('static', 'items.yml')))
+class Item < ActiveRecord::Base
+  attr_accessible :name, :sa
 end
