@@ -1,11 +1,11 @@
-<% title "Items" %>
+Items
 
 <table>
   <tr>
     <th>Name</th>
     <th>Sa</th>
   </tr>
-  <% for item in @items %>
+  <% @items.each do |item| %>
     <tr>
       <td><%= item.name %></td>
       <td><%= item.sa %></td>
