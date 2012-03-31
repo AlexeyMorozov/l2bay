@@ -1,10 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    if params[:query].blank?
-      @items = Item.find((7575..7594).to_a)
-    else
-      @items = Item.search(params[:query])
-    end
+    @items = Item.paginated_search(params[:query], params) if params[:query]
   end
 
   def show

@@ -7,17 +7,16 @@
   </p>
 <% end %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Sa</th>
-  </tr>
+<% if @items %>
+  <%= will_paginate @items %>
   <% for item in @items %>
-    <tr>
-      <td><%= item.name %></td>
-      <td><%= item.sa %></td>
-      <td><%= link_to "Show", item %></td>
-    </tr>
+    <p>
+    <%= link_to item do %>
+      <%= item.name %>
+      <% if item.sa.present? %>
+        [<%= item.sa %>]
+      <% end %>
+    <% end %>
+    </p>
   <% end %>
-</table>
-
+<% end %>
