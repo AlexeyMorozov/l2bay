@@ -1,5 +1,12 @@
 <% title "Items" %>
 
+<%= form_tag items_path, method: :get, class: 'form-search' do %>
+  <p>
+    <%= text_field_tag :query, params[:query], class: 'input-medium search-query' %>
+    <%= submit_tag "Search", name: nil, class: 'btn' %>
+  </p>
+<% end %>
+
 <table>
   <tr>
     <th>Name</th>
