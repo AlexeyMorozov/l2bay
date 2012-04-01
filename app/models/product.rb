@@ -8,4 +8,6 @@ class Product
   field :is_package_sale, :type => Boolean
   field :seen_time, :type => Time
   field :enchant, :type => Integer
+
+  index :item_id
 end
