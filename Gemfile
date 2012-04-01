@@ -50,3 +50,5 @@ gem 'bootstrap-will_paginate'
 
 gem 'mongoid'
 gem 'bson_ext'
+
+gem 'rails-timeago'

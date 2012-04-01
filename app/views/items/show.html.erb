@@ -29,7 +29,7 @@
           <td><%= number_to_human(p.price, units: :adena) -%></td>
           <td><%= p.shop.location -%></td>
           <td><%= p.shop.player -%></td>
-          <td><%= p.shop.seen_time -%></td>
+          <td><%= timeago_tag p.shop.seen_time, :date_only => false -%></td>
         </tr>
       <% end %>
     </tbody>
