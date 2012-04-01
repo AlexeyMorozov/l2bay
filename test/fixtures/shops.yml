@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  player: MyString
+  pack: false
+  seen_time: 2012-04-01 16:26:11
+  location: MyString
+
+two:
+  player: MyString
+  pack: false
+  seen_time: 2012-04-01 16:26:11
+  location: MyString
