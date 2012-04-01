@@ -1,0 +1,20 @@
+namespace :dev do
+  task :seed => :environment do
+    Shop.delete_all
+    [
+      {player: 'Aragorn', pack: false, seen_time: Time.zone.now - 1.hour, location: 'Aden', products: [
+        {item_id: 6608, count: 1, price: 87000100, enchant: 1},
+      ]},
+      {player: 'Legolas', pack: false, seen_time: Time.zone.now - 2.hour, location: 'Giran', products: [
+        {item_id: 7575, count: 1, price: 287020400, enchant: 2},
+      ]},
+      {player: 'Gimli', pack: false, seen_time: Time.zone.now - 1.day, location: 'Rune', products: [
+        {item_id: 7575, count: 1, price: 300020400, enchant: 3},
+        {item_id: 1463, count: 50, price: 1001, enchant: 0},
+        {item_id: 1804, count: 5, price: 100001001, enchant: 0},
+      ]},
+    ].each do |s|
+        Shop.create!(s)
+      end
+  end
+end
