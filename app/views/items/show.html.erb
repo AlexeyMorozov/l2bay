@@ -1,14 +1,37 @@
-<% title "Item" %>
+<% title(@item.name + (@item.sa.present? ? " [#{@item.sa}]" : '')) %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @item.name %>
-</p>
-<p>
-  <strong>Sa:</strong>
-  <%= @item.sa %>
-</p>
-
-<p>
-  <%= link_to "View All", items_path %>
-</p>
+<% if @item.products.count > 0 %>
+  <h2>Products</h2>
+  <table class="table table-stripted">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Count</th>
+        <th>Price</th>
+        <th>Location</th>
+        <th>Player</th>
+        <th>Seen Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @item.products.each do |p| %>
+        <tr>
+          <td>
+            <%= p.item.name -%>
+            <% if p.item.sa.present? -%>
+              [<%= p.item.sa -%>]
+            <% end -%>
+            <% if p.enchant > 0 -%>
+                +<%= p.enchant -%>
+            <% end -%>
+          </td>
+          <td><%= p.count -%></td>
+          <td><%= number_to_human(p.price, units: :adena) -%></td>
+          <td><%= p.shop.location -%></td>
+          <td><%= p.shop.player -%></td>
+          <td><%= p.shop.seen_time -%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end -%>

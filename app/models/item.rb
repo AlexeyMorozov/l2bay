@@ -43,6 +43,13 @@ class Item
     @id
   end
 
+  def products
+    shops = Shop.where('products.item_id' => @id)
+    shops.map do |s|
+      s.products.select {|p| p.item_id == @id}
+    end.flatten.compact
+  end
+
   private
 
     def self.find_one(id)
