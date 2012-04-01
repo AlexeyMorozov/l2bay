@@ -26,7 +26,7 @@
             <% end -%>
           </td>
           <td><%= p.count -%></td>
-          <td><%= number_to_human(p.price, units: :adena) -%></td>
+          <td><abbr title="<%= number_with_delimiter p.price, delimiter: ' ' %>"><%= number_to_human p.price, units: :adena -%></abbr></td>
           <td><%= p.shop.location -%></td>
           <td><%= p.shop.player -%></td>
           <td><%= timeago_tag p.shop.seen_time, :date_only => false -%></td>
