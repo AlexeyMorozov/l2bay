@@ -29,7 +29,7 @@ class Item
       sphinx_res = sphinx_search(query, {offset: pager.offset, limit: pager.per_page})
       ids = sphinx_res[0][:matches].map {|m| m[:doc]}
       pager.replace(find(ids))
-      pager.total_entries = sphinx_res[0][:total_found]
+      pager.total_entries = sphinx_res[0][:total]
     end
   end
 
