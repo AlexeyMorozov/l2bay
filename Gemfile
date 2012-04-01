@@ -47,3 +47,6 @@ gem "mocha", :group => :test
 
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+
+gem 'mongoid'
+gem 'bson_ext'
