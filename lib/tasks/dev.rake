@@ -7,6 +7,7 @@ namespace :dev do
       ]},
       {player: 'Legolas', pack: false, seen_time: Time.zone.now - 2.hour, location: 'Giran', products: [
         {item_id: 7575, count: 1, price: 287020400, enchant: 2},
+        {item_id: 7575, count: 1, price: 401000200, enchant: 5},
       ]},
       {player: 'Gimli', pack: false, seen_time: Time.zone.now - 1.day, location: 'Rune', products: [
         {item_id: 7575, count: 1, price: 300020400, enchant: 3},
@@ -14,7 +15,7 @@ namespace :dev do
         {item_id: 1804, count: 5, price: 100001001, enchant: 0},
       ]},
     ].each do |s|
-        Shop.create!(s)
+        1000.times {Shop.create!(s)}
       end
   end
 end

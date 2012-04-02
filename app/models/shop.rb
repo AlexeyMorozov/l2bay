@@ -8,5 +8,10 @@ class Shop
 
   embeds_many :products
 
-  index 'products.item_id'
+  index(
+    [
+      [ 'products.item_id', Mongo::ASCENDING ],
+      [ :seen_time, Mongo::DESCENDING ]
+    ]
+  )
 end
