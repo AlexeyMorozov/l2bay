@@ -46,5 +46,3 @@ gem "mocha", :group => :test
 
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-
-gem 'rails-timeago'

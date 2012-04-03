@@ -2,15 +2,15 @@
 
 <% if @item.products.count > 0 %>
   <h2>Products</h2>
-  <table class="table table-stripted">
+  <table class="table table-stripted products">
     <thead>
       <tr>
-        <th>Item</th>
-        <th>Count</th>
-        <th>Price</th>
-        <th>Location</th>
-        <th>Player</th>
-        <th>Seen Time</th>
+        <th class="item">Item</th>
+        <th class="count">Count</th>
+        <th class="price">Price</th>
+        <th class="location">Location</th>
+        <th class="player">Player</th>
+        <th class="seenTime">Seen Time</th>
       </tr>
     </thead>
     <tbody>
@@ -25,11 +25,11 @@
                 +<%= p.enchant -%>
             <% end -%>
           </td>
-          <td><%= p.count -%></td>
+          <td><%= number_with_delimiter p.count, delimiter: ' ' -%></td>
           <td><abbr title="<%= number_with_delimiter p.price, delimiter: ' ' %>"><%= number_to_human p.price, units: :adena -%></abbr></td>
           <td><%= p.shop.location -%></td>
           <td><%= p.shop.player -%></td>
-          <td><%= timeago_tag p.shop.seen_time, :date_only => false -%></td>
+          <td><%= timeago p.shop.seen_time %></td>
         </tr>
       <% end %>
     </tbody>
