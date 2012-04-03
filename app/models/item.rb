@@ -45,8 +45,7 @@ class Item
   end
 
   def products
-    shops = Shop.where('products.item_id' => @id).desc(:seen_time).limit(50)
-    shops.map do |s|
+    @products ||= Shop.where('products.item_id' => @id).desc(:seen_time).limit(50).map do |s|
       s.products.select {|p| p.item_id == @id}
     end.flatten.compact.first(50)
   end
