@@ -1,7 +1,8 @@
 class Item
   extend ActiveModel::Naming
 
-  @@cached = YAML::load(File.open(Rails.root.join('static', 'items.yml'), 'r')) if File.exists?(Rails.root.join('static', 'items.yml'))
+  @@cache_file = Rails.root.join('static', 'items.yml')
+  @@cached = YAML::load(File.open(@@cache_file, 'r')) if File.exists?(@@cache_file)
 
   attr_accessor :id, :name, :sa
 
