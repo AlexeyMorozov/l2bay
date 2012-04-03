@@ -45,7 +45,7 @@ class Item
   end
 
   def products
-    # Product.includes(:shop).where(item_id: @id).limit(50)
+    Product.includes(:shop).where(item_id: @id, 'shops.pack' => false).order('shops.seen_time DESC').limit(50)
   end
 
   private
