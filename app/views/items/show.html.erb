@@ -2,36 +2,5 @@
 
 <% if @item.products.count > 0 %>
   <h2>Products</h2>
-  <table class="table table-stripted products">
-    <thead>
-      <tr>
-        <th class="item">Item</th>
-        <th class="count">Count</th>
-        <th class="price">Price</th>
-        <th class="location">Location</th>
-        <th class="player">Player</th>
-        <th class="seenTime">Seen Time</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @item.products.each do |p| %>
-        <tr>
-          <td>
-            <%= p.item.name -%>
-            <% if p.item.sa.present? -%>
-              [<%= p.item.sa -%>]
-            <% end -%>
-            <% if p.enchant > 0 -%>
-                +<%= p.enchant -%>
-            <% end -%>
-          </td>
-          <td><%= number_with_delimiter p.count, delimiter: ' ' -%></td>
-          <td><abbr title="<%= number_with_delimiter p.price, delimiter: ' ' %>"><%= number_to_human p.price, units: :adena -%></abbr></td>
-          <td><%= p.shop.location -%></td>
-          <td><%= p.shop.player -%></td>
-          <td><%= timeago p.shop.seen_time %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render partial: 'products', locals: {products: @item.products} %>
 <% end -%>
