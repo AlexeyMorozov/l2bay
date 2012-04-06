@@ -8,17 +8,21 @@
 <% end %>
 
 <% if @items %>
-  <%= will_paginate @items, inner_window: 1, outer_window: 0 %>
-  <% for item in @items %>
-    <p>
-    <%= link_to item do %>
-      <%= item.name %>
-      <% if item.sa.present? %>
-        [<%= item.sa %>]
-      <% end %>
+  <% if @items.count > 0 -%>
+    <%= will_paginate @items, inner_window: 1, outer_window: 0 %>
+    <% for item in @items %>
+      <p>
+        <%= link_to item do %>
+          <%= item.name %>
+          <% if item.sa.present? %>
+            [<%= item.sa %>]
+          <% end %>
+        <% end %>
+      </p>
     <% end %>
-    </p>
-  <% end %>
+  <% else -%>
+    <p>No results found.</p>
+  <% end -%>
 <% else -%>
   <% if @products.count > 0 %>
     <div class="offers">
