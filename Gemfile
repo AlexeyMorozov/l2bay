@@ -42,7 +42,5 @@ gem 'twitter-bootstrap-rails'
 
 gem 'nifty-generators', group: :development
 
-gem "mocha", :group => :test
-
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
