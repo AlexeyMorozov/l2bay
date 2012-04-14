@@ -11,14 +11,15 @@
   <% if @items.count > 0 -%>
     <%= will_paginate @items, inner_window: 1, outer_window: 0 %>
     <% for item in @items %>
-      <p>
-        <%= link_to item do %>
+      <%= link_to item, class: 'searchItem' do %>
+        <div class="itemIcon"><%= image_tag "items/#{item.id}.png" %></div>
+        <div class="itemName">
           <%= item.name %>
           <% if item.sa.present? %>
             [<%= item.sa %>]
           <% end %>
-        <% end %>
-      </p>
+        </div>
+      <% end %>
     <% end %>
   <% else -%>
     <p>No results found.</p>

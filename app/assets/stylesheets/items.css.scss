@@ -16,3 +16,18 @@
 .offers {
   margin-top: 80px;
 }
+
+a.searchItem {
+  display: block;
+  overflow: hidden;
+  line-height: 4em;
+  &:hover {
+    background-color: whiteSmoke;
+  }
+  text-decoration: none;
+}
+
+.itemIcon {
+  float: left;
+  padding: 0 10px;
+}
