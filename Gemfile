@@ -44,3 +44,5 @@ gem 'nifty-generators', group: :development
 
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+
+gem 'devise'
