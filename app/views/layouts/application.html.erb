@@ -29,6 +29,22 @@
             <ul class="nav">
               <li><%= link_to "Market", items_path %></li>
             </ul>
+            <ul class="nav pull-right">
+              <% if current_user %>
+                <li class="dropdown">
+                  <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                    <%= current_user.email %>
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <%= link_to 'Log out', destroy_user_session_path %>
+                  </ul>
+                </li>
+              <% else %>
+                <li><%= link_to 'Log in', new_user_session_path %></li>
+                <li><%= link_to 'Register', new_user_registration_path %></li>
+              <% end %>
+            </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
