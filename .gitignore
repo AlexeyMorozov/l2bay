@@ -21,3 +21,5 @@
 /.sass-cache
 
 /app/assets/images/items
+
+/config/app_config.yml
