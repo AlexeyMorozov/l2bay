@@ -1,0 +1,14 @@
+<% content_for :content do %>
+  <div class="row">
+    <div class="span9">
+      <%= yield %>
+    </div>
+    <div class="span3">
+      <div class="well sidebar-nav">
+        <h3>Contribute</h3>
+        <p>If you want to help keep database up-to-date - download our <%= link_to 'software', '#' %>.</p>
+      </div>
+    </div>
+  </div>
+<% end %>
+<%= render template: 'layouts/application' %>

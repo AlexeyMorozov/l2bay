@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) + " - L2bay" : "L2bay" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Lineage 2 market and database" %> - L2bay</title>
     <%= csrf_meta_tags %>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
     <![endif]-->
 
     <%= stylesheet_link_tag "application", :media => "all" %>
@@ -18,7 +18,7 @@
 
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
-          <div class="container">
+        <div class="container">
           <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -27,7 +27,7 @@
           <a class="brand" href="/">L2bay</a>
           <div class="container nav-collapse">
             <ul class="nav">
-                <li><%= link_to "Market", items_path %></li>
+              <li><%= link_to "Market", items_path %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -35,34 +35,27 @@
     </div>
 
     <div class="container">
-      <div class="content">
-        <div class="row">
-          <div class="span9">
-            <% flash.each do |name, msg| %>
-              <%= content_tag :div, msg, :id => "flash_#{name}" %>
-            <% end %>
-            <%= content_tag :h1, yield(:title) if show_title? %>
-            <%= yield %>
-          </div>
-          <div class="span3">
-            <div class="well sidebar-nav">
-              <h3>Contribute</h3>
-              <p>If you want to help keep database up-to-date - download our <%= link_to 'software', '#' %>.</p>
-            </div><!--/.well -->
-          </div><!--/span-->
-        </div><!--/row-->
-      </div><!--/content-->
+
+      <div class="row">
+        <div class="span12">
+          <% flash.each do |name, msg| %>
+            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          <% end %>
+
+          <%= content_tag :h1, yield(:title) if show_title? %>
+
+          <%= content_for?(:content) ? yield(:content) : yield %>
+        </div>
+      </div>
 
       <hr>
 
       <footer>
-        <p>&copy; 2012 L2bay</p>
+      <p>&copy; 2012 L2bay</p>
       </footer>
 
-    </div> <!-- /container -->
+    </div>
 
-    <!-- Le javascript
-    ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
 
