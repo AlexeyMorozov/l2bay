@@ -1,7 +1,9 @@
 L2bay::Application.routes.draw do
   root :to => 'items#index'
   devise_for :users
-  resources :items
+  scope ":server" do
+    resources :items
+  end
   resources :user_ids
 
   # The priority is based upon order of creation:

@@ -1,6 +1,6 @@
 <% title(@item.name + (@item.sa.present? ? " [#{@item.sa}]" : '')) %>
 
-<% if @item.products.count > 0 %>
+<% if @products.count > 0 %>
   <h2>Products</h2>
-  <%= render partial: 'products', locals: {products: @item.products} %>
+  <%= render partial: 'products', locals: {products: @products} %>
 <% end -%>

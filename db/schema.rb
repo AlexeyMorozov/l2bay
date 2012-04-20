@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120418201143) do
+ActiveRecord::Schema.define(:version => 20120420114829) do
 
   create_table "products", :force => true do |t|
     t.integer  "shop_id"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(:version => 20120418201143) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "servers", ["name"], :name => "index_servers_on_name"
+
   create_table "shops", :force => true do |t|
     t.string   "player"
     t.boolean  "pack"
@@ -39,9 +41,11 @@ ActiveRecord::Schema.define(:version => 20120418201143) do
     t.string   "location"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "server_id"
   end
 
   add_index "shops", ["pack", "seen_time"], :name => "index_shops_on_pack_and_seen_time"
+  add_index "shops", ["server_id"], :name => "index_shops_on_server_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
