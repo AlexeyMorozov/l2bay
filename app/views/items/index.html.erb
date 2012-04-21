@@ -1,6 +1,11 @@
 <% title "Items" %>
 
-<%= form_tag items_path, method: :get, class: 'form-search' do %>
+<div class="server-selection">
+  Server
+  <%= select_tag 'server_param', options_for_select(Server.all.map {|s| [s.name, items_path(s)]}, items_path(current_server)), class: 'span2' %>
+</div>
+
+<%= form_tag items_path(current_server), method: :get, class: 'form-search' do %>
   <p>
     <%= text_field_tag :query, params[:query], class: 'input-medium search-query' %>
     <%= submit_tag "Search", name: nil, class: 'btn' %>
@@ -11,7 +16,7 @@
   <% if @items.count > 0 -%>
     <%= will_paginate @items, inner_window: 1, outer_window: 0 %>
     <% for item in @items %>
-      <%= link_to item_path(@server, item), class: 'searchItem' do %>
+      <%= link_to item_path(current_server, item), class: 'searchItem' do %>
         <div class="itemIcon"><%= image_tag "items/#{item.id}.png" %></div>
         <div class="itemName">
           <%= item.name %>

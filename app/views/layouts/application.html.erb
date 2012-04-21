@@ -27,7 +27,7 @@
           <a class="brand" href="/">L2bay</a>
           <div class="container nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Market", items_path %></li>
+              <li><%= link_to "Market", items_path(current_server) %></li>
             </ul>
             <ul class="nav pull-right">
               <% if current_user %>

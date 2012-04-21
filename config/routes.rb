@@ -1,9 +1,10 @@
 L2bay::Application.routes.draw do
-  root :to => 'items#index'
-  devise_for :users
-  scope ":server" do
+  root to: 'items#index'
+  scope ":server", server: /#{Server.all.map(&:to_param).join('|')}/ do
     resources :items
+    root to: 'items#index'
   end
+  devise_for :users
   resources :user_ids
 
   # The priority is based upon order of creation:
