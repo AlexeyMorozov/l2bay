@@ -1,4 +1,8 @@
 class CreateProducts < ActiveRecord::Migration
+  def connection
+    Product.connection
+  end
+
   def change
     create_table :products do |t|
       t.integer :shop_id

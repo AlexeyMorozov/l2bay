@@ -1,4 +1,6 @@
 class Product < ActiveRecord::Base
+  establish_connection "game_#{Rails.env}"
+
   belongs_to :shop
 
   attr_accessible :item_id, :count, :price, :enchant

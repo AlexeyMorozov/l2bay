@@ -1,6 +1,6 @@
 L2bay::Application.routes.draw do
   root to: 'items#index'
-  scope ":server", server: /#{Server.all.map(&:to_param).join('|')}/ do
+  scope ":server" do
     resources :items
     root to: 'items#index'
   end

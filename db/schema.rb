@@ -13,40 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20120420114829) do
 
-  create_table "products", :force => true do |t|
-    t.integer  "shop_id"
-    t.integer  "item_id"
-    t.integer  "count",      :limit => 8
-    t.integer  "price",      :limit => 8
-    t.integer  "enchant"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-  end
-
-  add_index "products", ["item_id"], :name => "index_products_on_item_id"
-  add_index "products", ["shop_id"], :name => "index_products_on_shop_id"
-
-  create_table "servers", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "servers", ["name"], :name => "index_servers_on_name"
-
-  create_table "shops", :force => true do |t|
-    t.string   "player"
-    t.boolean  "pack"
-    t.datetime "seen_time"
-    t.string   "location"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "server_id"
-  end
-
-  add_index "shops", ["pack", "seen_time"], :name => "index_shops_on_pack_and_seen_time"
-  add_index "shops", ["server_id"], :name => "index_shops_on_server_id"
-
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false

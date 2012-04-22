@@ -1,4 +1,8 @@
 class CreateShops < ActiveRecord::Migration
+  def connection
+    Shop.connection
+  end
+
   def change
     create_table :shops do |t|
       t.string :player

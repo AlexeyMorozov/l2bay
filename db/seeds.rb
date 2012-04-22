@@ -5,4 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Server.delete_all
 Server.create!([{ name: 'Chronos', }, { name: 'Naia' }, { name: 'Shilen' }, { name: 'Magmeld' }, { name: 'Bartz' }])
