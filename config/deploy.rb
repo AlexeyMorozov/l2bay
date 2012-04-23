@@ -29,7 +29,7 @@ namespace :deploy do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
     run "mkdir -p #{shared_path}/config"
-    puts "Now create app_config.yml in #{shared_path}."
+    puts "Now create app_config.yml in #{shared_path}/config."
   end
   after "deploy:setup", "deploy:setup_config"
 
