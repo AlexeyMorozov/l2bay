@@ -1,6 +1,7 @@
 db_base: &db_base
   adapter: postgresql
   encoding: utf-8
+  host: localhost
   username: l2bay
   pool: 5
 
