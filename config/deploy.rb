@@ -38,11 +38,10 @@ namespace :deploy do
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 
-  task :setup_item_icons, roles: :app do
+  task :unpack_icons, roles: :app do
     run "mkdir -p #{shared_path}/images"
     run "tar -xjf #{current_path}/static/item_icons.tar.bz2 --directory #{shared_path}/images"
   end
-  after "deploy:setup", "deploy:setup_item_icons"
 
   task :symlink_item_icons, roles: :app do
     run "ln -nfs #{shared_path}/images/items #{release_path}/app/assets/images/items"
