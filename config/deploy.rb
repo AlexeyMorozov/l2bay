@@ -41,7 +41,7 @@ namespace :deploy do
 
   task :unpack_icons, roles: :app do
     run "mkdir -p #{shared_path}/images"
-    run "tar -xjf #{current_path}/static/item_icons.tar.bz2 --directory #{shared_path}/images"
+    run "tar -xjf #{release_path}/static/item_icons.tar.bz2 --directory #{shared_path}/images"
   end
   after "deploy:finalize_update", "deploy:unpack_icons" if ENV.has_key?('WITH_ICONS')
 
