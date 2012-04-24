@@ -43,6 +43,7 @@ namespace :deploy do
     run "mkdir -p #{shared_path}/images"
     run "tar -xjf #{current_path}/static/item_icons.tar.bz2 --directory #{shared_path}/images"
   end
+  after "deploy:finalize_update", "deploy:unpack_icons" if ENV.has_key?('WITH_ICONS')
 
   task :symlink_item_icons, roles: :app do
     run "ln -nfs #{shared_path}/images/items #{release_path}/app/assets/images/items"
