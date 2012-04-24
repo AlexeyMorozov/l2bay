@@ -41,7 +41,7 @@ namespace :deploy do
 
   task :unpack_icons, roles: :app do
     run "mkdir -p #{shared_path}/images"
-    run "tar -xjf #{release_path}/static/item_icons.tar.bz2 --directory #{shared_path}/images"
+    run "tar -xjf #{current_path}/static/item_icons.tar.bz2 --directory #{shared_path}/images"
   end
   after "deploy:finalize_update", "deploy:unpack_icons" if ENV.has_key?('WITH_ICONS')
 
@@ -59,4 +59,17 @@ namespace :deploy do
     end
   end
   before "deploy", "deploy:check_revision"
+
+  namespace :deploy do
+    namespace :assets do
+      task :precompile, :roles => :web, :except => { :no_release => true } do
+        from = source.next_revision(current_revision)
+        if capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l").to_i > 0
+          run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile}
+        else
+          logger.info "Skipping asset pre-compilation because there were no asset changes"
+        end
+      end
+    end
+  end
 end
