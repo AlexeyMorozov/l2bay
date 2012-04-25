@@ -13,7 +13,9 @@ set -e
 TIMEOUT=${TIMEOUT-60}
 APP_ROOT=/home/deployer/apps/l2bay/current
 PID=$APP_ROOT/tmp/pids/searchd.production.pid
-CMD="searchd --config $APP_ROOT/config/sphinx.conf"
+CONFIG="$APP_ROOT/config/sphinx.conf"
+SEARCHD="searchd --config $CONFIG"
+INDEXER="indexer --config $CONFIG --all"
 AS_USER=deployer
 set -u
 
@@ -38,7 +40,7 @@ run () {
 case "$1" in
 start)
   sig 0 && echo >&2 "Already running" && exit 0
-  run "$CMD"
+  run "$SEARCHD"
   ;;
 stop)
   sig QUIT && exit 0
@@ -50,12 +52,12 @@ force-stop)
   ;;
 restart|reload)
   sig HUP && echo reloaded OK && exit 0
-  echo >&2 "Couldn't reload, starting '$CMD' instead"
-  run "$CMD"
+  echo >&2 "Couldn't reload, starting '$SEARCHD' instead"
+  run "$SEARCHD"
   ;;
 reindex)
-  sig 0 && run "indexer --all --rotate" && exit 0
-	run "indexer --all"
+  sig 0 && run "$INDEXER --rotate" && exit 0
+	run "$INDEXER"
 	echo "Reindexed"
 	echo
 	exit $?
