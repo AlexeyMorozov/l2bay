@@ -28,6 +28,7 @@ namespace :deploy do
   task :setup_config, roles: :app do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
+    sudo "ln -nfs #{current_path}/config/sphinx_init.sh /etc/init.d/sphinx_#{application}"
     run "mkdir -p #{shared_path}/config"
     put File.read("config/app_config.yml"), "#{shared_path}/config/app_config.yml"
     puts "Now edit the config files in #{shared_path}."
@@ -38,6 +39,13 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/config/app_config.yml #{release_path}/config/app_config.yml"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
+
+  task :setup_sphinx do
+    run "mkdir -p #{shared_path}/sphinx"
+    run "ln -nfs #{shared_path}/sphinx #{release_path}/sphinx"
+    run "cd #{release_path} && rake thebes:build RAILS_ENV=production"
+  end
+  after "deploy:finalize_update", "deploy:setup_sphinx"
 
   task :unpack_icons, roles: :app do
     run "mkdir -p #{shared_path}/images"

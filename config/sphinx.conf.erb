@@ -7,8 +7,8 @@ searchd
 {
   listen = 127.0.0.1:9312
   log = <%= Rails.root %>/log/searchd.log
-  query_log = <%= Rails.root %>/searchd.query.log
-  pid_file = <%= Rails.root %>/searchd.<%= Rails.env.to_s %>.pid
+  query_log = <%= Rails.root %>/log/searchd.query.log
+  pid_file = <%= Rails.root %>/tmp/pids/searchd.<%= Rails.env.to_s %>.pid
 }
 
 source items_src
@@ -20,7 +20,7 @@ source items_src
 index items
 {
   source = items_src
-  path = <%= Rails.root %>/sphinxsearch/data/items
+  path = <%= Rails.root %>/sphinx/items
   charset_type = utf-8
   min_infix_len = 2
 }

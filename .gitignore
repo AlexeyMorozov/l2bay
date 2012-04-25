@@ -14,12 +14,10 @@
 /log/*.log
 /tmp
 
-/sphinxsearch
-/searchd.query.log
-/searchd.development.pid
-
 /.sass-cache
 
 /app/assets/images/items
 
 /config/app_config.yml
+/config/sphinx.conf
+/sphinx
