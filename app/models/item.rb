@@ -48,6 +48,10 @@ class Item
     Product.includes(:shop).where(item_id: @id, 'shops.server_id' => server_id, 'shops.pack' => false).order('shops.seen_time DESC').limit(50)
   end
 
+  def path_to_icon
+    "items/#{@id}.png"
+  end
+
   private
 
     def self.find_one(id)

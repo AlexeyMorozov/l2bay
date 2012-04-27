@@ -17,7 +17,7 @@
     <%= will_paginate @items, inner_window: 1, outer_window: 0 %>
     <% for item in @items %>
       <%= link_to item_path(current_server, item), class: 'searchItem' do %>
-        <div class="itemIcon"><%= image_tag "items/#{item.id}.png" rescue nil %></div>
+        <div class="itemIcon"><%= image_tag item.path_to_icon rescue nil %></div>
         <div class="itemName">
           <%= item.name %>
           <% if item.sa.present? %>
