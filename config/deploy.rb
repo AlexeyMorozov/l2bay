@@ -25,15 +25,14 @@ namespace :deploy do
     end
   end
 
-  task :setup_config, roles: :app do
+  task :setup_configs, roles: :app do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
     sudo "ln -nfs #{current_path}/config/sphinx_init.sh /etc/init.d/sphinx_#{application}"
     run "mkdir -p #{shared_path}/config"
     put File.read("config/app_config.yml"), "#{shared_path}/config/app_config.yml"
-    puts "Now edit the config files in #{shared_path}."
   end
-  after "deploy:setup", "deploy:setup_config"
+  after "deploy:setup", "deploy:setup_configs"
 
   task :setup_sphinx, roles: :app do
     run "mkdir -p #{shared_path}/sphinx"
@@ -42,9 +41,18 @@ namespace :deploy do
 
   task :upload_static, roles: :app do
     run "mkdir -p #{shared_path}/static"
-    upload "static/items.yml", "#{shared_path}/static/"
+    top.upload "static/items.yml", "#{shared_path}/static/items.yml"
   end
   after "deploy:setup", "deploy:upload_static"
+
+  task :upload_icons, roles: :app do
+    `tar -czf icons.tgz -C app/assets/images items`
+    top.upload "icons.tgz", "#{shared_path}/images/icons.tgz"
+    run "tar -xzf #{shared_path}/images/icons.tgz -C #{shared_path}/images"
+    run "rm #{shared_path}/images/icons.tgz"
+    `rm icons.tgz`
+  end
+  after "deploy:setup", "deploy:upload_icons"
 
   task :symlink_config, roles: :app do
     run "ln -nfs #{shared_path}/config/app_config.yml #{release_path}/config/app_config.yml"
