@@ -46,11 +46,11 @@ namespace :deploy do
   after "deploy:setup", "deploy:upload_static"
 
   task :upload_icons, roles: :app do
-    `tar -czf icons.tgz -C app/assets/images items`
+    run_locally "tar -czf icons.tgz -C app/assets/images items"
     top.upload "icons.tgz", "#{shared_path}/images/icons.tgz"
     run "tar -xzf #{shared_path}/images/icons.tgz -C #{shared_path}/images"
     run "rm #{shared_path}/images/icons.tgz"
-    `rm icons.tgz`
+    run_locally "rm icons.tgz"
   end
   after "deploy:setup", "deploy:upload_icons"
 
