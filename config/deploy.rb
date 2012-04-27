@@ -35,17 +35,21 @@ namespace :deploy do
   end
   after "deploy:setup", "deploy:setup_config"
 
+  task :setup_sphinx, roles: :app do
+    run "mkdir -p #{shared_path}/sphinx"
+  end
+  after "deploy:setup", "deploy:setup_sphinx"
+
   task :symlink_config, roles: :app do
     run "ln -nfs #{shared_path}/config/app_config.yml #{release_path}/config/app_config.yml"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 
-  task :setup_sphinx do
-    run "mkdir -p #{shared_path}/sphinx"
+  task :symlink_sphinx, roles: :app do
     run "ln -nfs #{shared_path}/sphinx #{release_path}/sphinx"
     run "cd #{release_path} && rake thebes:build RAILS_ENV=production"
   end
-  after "deploy:finalize_update", "deploy:setup_sphinx"
+  after "deploy:finalize_update", "deploy:symlink_sphinx"
 
   task :unpack_icons, roles: :app do
     run "mkdir -p #{shared_path}/images"
