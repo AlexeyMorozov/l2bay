@@ -17,6 +17,8 @@
 /.sass-cache
 
 /app/assets/images/items
+/static/*
+!/static/.gitkeep
 
 /config/app_config.yml
 /config/sphinx.conf
