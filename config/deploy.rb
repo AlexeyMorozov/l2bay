@@ -40,6 +40,12 @@ namespace :deploy do
   end
   after "deploy:setup", "deploy:setup_sphinx"
 
+  task :upload_static, roles: :app do
+    run "mkdir -p #{shared_path}/static"
+    upload "static/items.yml", "#{shared_path}/static/"
+  end
+  after "deploy:setup", "deploy:upload_static"
+
   task :symlink_config, roles: :app do
     run "ln -nfs #{shared_path}/config/app_config.yml #{release_path}/config/app_config.yml"
   end
@@ -50,12 +56,6 @@ namespace :deploy do
     run "cd #{release_path} && rake thebes:build RAILS_ENV=production"
   end
   after "deploy:finalize_update", "deploy:symlink_sphinx"
-
-  task :unpack_icons, roles: :app do
-    run "mkdir -p #{shared_path}/images"
-    run "tar -xjf #{current_path}/static/item_icons.tar.bz2 --directory #{shared_path}/images"
-  end
-  after "deploy:finalize_update", "deploy:unpack_icons" if ENV.has_key?('WITH_ICONS')
 
   task :symlink_item_icons, roles: :app do
     run "ln -nfs #{shared_path}/images/items #{release_path}/app/assets/images/items"
