@@ -6,14 +6,11 @@
   <sphinx:field name="sa"/>
 </sphinx:schema>
 
-<% File.open(File.expand_path('../items.csv', __FILE__), 'r') do |items| %>
-  <% items.read.each_line do |item| %>
-    <% id, name, sa = item.chomp.split(%r{\u0001|\u0002}) %>
-    <sphinx:document id="<%= id %>">
-      <name><%= name.encode(xml: :text) %></name>
-      <sa><%= sa.encode(xml: :text) %></sa>
-    </sphinx:document>
-  <% end %>
+<% items.each do |item| %>
+  <sphinx:document id="<%= item.id %>">
+    <name><%= item.name.encode(xml: :text) %></name>
+    <sa><%= item.sa.encode(xml: :text) %></sa>
+  </sphinx:document>
 <% end %>
 
 </sphinx:docset>

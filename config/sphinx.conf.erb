@@ -14,7 +14,7 @@ searchd
 source items_src
 {
   type = xmlpipe2
-  xmlpipe_command = erb <%= Rails.root %>/static/items.xmlpipe2.erb
+  xmlpipe_command = cd <%= Rails.root %> && rake xmlpipe:items
 }
 
 index items

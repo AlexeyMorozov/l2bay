@@ -6,6 +6,10 @@ class Item
 
   attr_accessor :id, :name, :sa
 
+  def self.all
+    @@cached.values
+  end
+
   def self.find(*ids)
     expects_array = ids.first.kind_of?(Array)
     return ids.first if expects_array && ids.first.empty?
