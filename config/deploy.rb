@@ -65,6 +65,11 @@ namespace :deploy do
   end
   after "deploy:finalize_update", "deploy:symlink_sphinx"
 
+  task :symlink_items, roles: :app do
+    run "ln -nfs #{shared_path}/static/items.yml #{release_path}/static/items.yml"
+  end
+  after "deploy:finalize_update", "deploy:symlink_items"
+
   task :symlink_item_icons, roles: :app do
     run "ln -nfs #{shared_path}/images/items #{release_path}/app/assets/images/items"
   end
