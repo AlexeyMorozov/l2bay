@@ -15,6 +15,14 @@ CMD="$APP_ROOT/receiver localhost:2345"
 AS_USER=deployer
 set -u
 
+run () {
+  if [ "$(id -un)" = "$AS_USER" ]; then
+    eval $1
+  else
+    su -c "$1" - $AS_USER
+  fi
+}
+
 case "$1" in
 start)
   run "$CMD"
