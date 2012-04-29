@@ -49,6 +49,7 @@ namespace :deploy do
 
   task :upload_icons, roles: :app do
     run_locally "tar -czf icons.tgz -C app/assets/images items"
+    run "mkdir -p #{shared_path}/images"
     top.upload "icons.tgz", "#{shared_path}/images/icons.tgz"
     run "tar -xzf #{shared_path}/images/icons.tgz -C #{shared_path}/images"
     run "rm #{shared_path}/images/icons.tgz"
