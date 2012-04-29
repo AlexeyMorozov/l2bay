@@ -17,6 +17,8 @@ class ItemsController < ApplicationController
   private
 
   def save_last_server
-    cookies[:server_id] = { value: current_server.id, expires: 10.years.from_now } if cookies[:server_id] != current_server.id
+    if cookies[:server_id] != current_server.id
+      cookies[:server_id] = { value: current_server.id, expires: 10.years.from_now } 
+    end
   end
 end
