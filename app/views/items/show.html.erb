@@ -3,4 +3,6 @@
 <% if @products.count > 0 %>
   <h2>Products</h2>
   <%= render partial: 'products', locals: {products: @products} %>
+<% else %>
+  <p>Still no products found..</p>
 <% end -%>
