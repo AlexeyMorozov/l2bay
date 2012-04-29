@@ -23,6 +23,9 @@
           <% if item.sa.present? %>
             [<%= item.sa %>]
           <% end %>
+          <% show_unless_zero item.products_from_server(current_server.id).count do |count| %>
+            <strong>(<%= pluralize(count, "record") %>)</strong>
+          <% end %>
         </div>
       <% end %>
     <% end %>

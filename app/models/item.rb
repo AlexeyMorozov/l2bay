@@ -29,7 +29,7 @@ class Item
 
   def self.paginated_search(query, options = {})
     page = (options[:page] || 1).to_i
-    per_page = (options[:per_page] || 20).to_i
+    per_page = (options[:per_page] || 10).to_i
     WillPaginate::Collection.create(page, per_page) do |pager|
       sphinx_res = sphinx_search(query, {offset: pager.offset, limit: pager.per_page})
       ids = sphinx_res[0][:matches].map {|m| m[:doc]}

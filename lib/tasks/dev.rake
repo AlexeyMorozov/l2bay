@@ -10,7 +10,7 @@ namespace :dev do
         {item_id: 7575, count: 1, price: 287020400, enchant: 2},
       ])
       Shop.create!({
-        server_id: Server.offset(2).limit(1).first.id, player: 'Legolas', pack: false, seen_time: Time.zone.now - 2.hour, loc_x: 4, loc_y: 5, loc_z: 6
+        server_id: Server.first.id, player: 'Legolas', pack: false, seen_time: Time.zone.now - 2.hour, loc_x: 4, loc_y: 5, loc_z: 6
       }).products.create([
         {item_id: 7575, count: 1, price: 401000200, enchant: 5},
       ])
