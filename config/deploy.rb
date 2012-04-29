@@ -31,6 +31,7 @@ namespace :deploy do
     sudo "ln -nfs #{current_path}/config/sphinx_init.sh /etc/init.d/sphinx_#{application}"
     run "mkdir -p #{shared_path}/config"
     put File.read("config/app_config.yml"), "#{shared_path}/config/app_config.yml"
+    run "chmod 640 #{shared_path}/config/app_config.yml"
   end
   after "deploy:setup", "deploy:setup_configs"
 
