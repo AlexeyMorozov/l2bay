@@ -25,6 +25,7 @@ namespace :deploy do
     end
   end
 
+
   task :setup_configs, roles: :app do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
@@ -42,8 +43,7 @@ namespace :deploy do
   after "deploy:setup", "deploy:setup_sphinx"
 
   task :upload_static, roles: :app do
-    run "mkdir -p #{shared_path}/static"
-    top.upload "static/items.yml", "#{shared_path}/static/items.yml"
+    top.upload "static", "#{shared_path}/", recursive: true, via: :scp
   end
   after "deploy:setup", "deploy:upload_static"
 
@@ -57,26 +57,15 @@ namespace :deploy do
   end
   after "deploy:setup", "deploy:upload_icons"
 
-  task :symlink_config, roles: :app do
-    run "ln -nfs #{shared_path}/config/app_config.yml #{release_path}/config/app_config.yml"
-  end
-  after "deploy:finalize_update", "deploy:symlink_config"
 
-  task :symlink_sphinx, roles: :app do
+  task :symlink_shared, roles: :app do
+    run "ln -nfs #{shared_path}/config/app_config.yml #{release_path}/config/app_config.yml"
     run "ln -nfs #{shared_path}/sphinx #{release_path}/sphinx"
     run "cd #{release_path} && rake thebes:build RAILS_ENV=production"
-  end
-  after "deploy:finalize_update", "deploy:symlink_sphinx"
-
-  task :symlink_items, roles: :app do
-    run "ln -nfs #{shared_path}/static/items.yml #{release_path}/static/items.yml"
-  end
-  after "deploy:finalize_update", "deploy:symlink_items"
-
-  task :symlink_item_icons, roles: :app do
+    run "ln -nfs #{shared_path}/static #{release_path}/static"
     run "ln -nfs #{shared_path}/images/items #{release_path}/app/assets/images/items"
   end
-  after "deploy:finalize_update", "deploy:symlink_item_icons"
+  after "deploy:finalize_update", "deploy:symlink_shared"
 
   desc "Make sure local git is in sync with remote."
   task :check_revision, roles: :web do
