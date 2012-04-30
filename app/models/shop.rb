@@ -3,7 +3,7 @@ class Shop < ActiveRecord::Base
 
   has_many :products
 
-  attr_accessible :server_id, :player, :pack, :seen_time, :loc_x, :loc_y, :loc_z
+  attr_accessible :server_id, :player, :pack, :sell, :seen_time, :loc_x, :loc_y, :loc_z
 
   def location
     "#{loc_x} #{loc_y} #{loc_z}"
