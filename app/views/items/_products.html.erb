@@ -13,13 +13,9 @@
     <% products.each do |p| %>
       <tr>
         <td>
-          <%= p.item.name -%>
-          <% if p.item.sa.present? -%>
-            [<%= p.item.sa -%>]
-          <% end -%>
-          <% if p.enchant > 0 -%>
-              +<%= p.enchant -%>
-          <% end -%>
+          <abbr title="<%= p.to_s %>">
+            <%= truncate(p.to_s, omission: '..') %>
+          </abbr>
         </td>
         <td>
           <abbr title="<%= number_with_delimiter p.count, delimiter: ' ' -%>">
