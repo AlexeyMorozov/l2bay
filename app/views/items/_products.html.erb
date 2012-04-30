@@ -22,11 +22,13 @@
           <% end -%>
         </td>
         <td>
-          <%= number_with_delimiter p.count, delimiter: ' ' -%>
+          <abbr title="<%= number_with_delimiter p.count, delimiter: ' ' -%>">
+            <%= number_to_human p.count, units: :common -%>
+          </abbr>
         </td>
         <td>
           <abbr title="<%= number_with_delimiter p.price, delimiter: ' ' %>">
-            <%= number_to_human p.price, units: :adena -%>
+            <%= number_to_human p.price, units: :common -%>
           </abbr>
         </td>
         <td>
