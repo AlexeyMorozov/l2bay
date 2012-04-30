@@ -2,7 +2,7 @@
 
 <div class="server-selection">
   Server
-  <%= select_tag 'server_param', options_for_select(Server.all.map {|s| [s.name, items_path(s)]}, items_path(current_server)), class: 'span2' %>
+  <%= select_tag 'server_param', server_options, class: 'span2' %>
 </div>
 
 <%= form_tag items_path(current_server), method: :get, class: 'form-search' do %>
