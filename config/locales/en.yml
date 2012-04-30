@@ -3,6 +3,7 @@
 
 en:
   adena:
+    unit: ''
     thousand: 'K'
     million: 'M'
     billion: 'B'

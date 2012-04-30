@@ -22,7 +22,9 @@
           <% end -%>
         </td>
         <td><%= number_with_delimiter p.count, delimiter: ' ' -%></td>
-        <td><abbr title="<%= number_with_delimiter p.price, delimiter: ' ' %>"><%= number_to_human p.price, units: :adena -%></abbr></td>
+        <td><abbr title="<%= number_with_delimiter p.price, delimiter: ' ' %>">
+            <%= number_to_human p.price, units: :adena -%>
+        </abbr></td>
         <td><%= p.shop.location -%></td>
         <td><%= p.shop.player -%></td>
         <td><%= timeago p.shop.seen_time %></td>
