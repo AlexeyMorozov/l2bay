@@ -28,8 +28,8 @@
           </abbr>
         </td>
         <td>
-          <abbr title="<%= p.shop.coordinates %>">
-            <%= p.shop.location_name -%>
+          <abbr title="<%= "#{p.shop.location_name}: #{p.shop.coordinates}" %>">
+            <%= truncate(p.shop.location_name, length: 10, omission: '..') -%>
           </abbr>
         </td>
         <td><%= p.shop.player -%></td>
