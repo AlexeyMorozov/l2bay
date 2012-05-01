@@ -27,9 +27,9 @@ namespace :deploy do
 
 
   task :setup_configs, roles: :app do
-    sudo "cp #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
-    sudo "cp #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
-    sudo "cp #{current_path}/config/sphinx_init.sh /etc/init.d/sphinx_#{application}"
+    sudo "cp --remove-destination #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
+    sudo "cp --remove-destination #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
+    sudo "cp --remove-destination #{current_path}/config/sphinx_init.sh /etc/init.d/sphinx_#{application}"
     run "mkdir -p #{shared_path}/config"
     run "touch #{shared_path}/config/app_config.yml"
     run "chmod 640 #{shared_path}/config/app_config.yml"
