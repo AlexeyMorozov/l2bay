@@ -30,7 +30,6 @@ namespace :deploy do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
     sudo "ln -nfs #{current_path}/config/sphinx_init.sh /etc/init.d/sphinx_#{application}"
-    sudo "ln -nfs #{current_path}/config/receiver_init.sh /etc/init.d/receiver_#{application}"
     run "mkdir -p #{shared_path}/config"
     run "touch #{shared_path}/config/app_config.yml"
     run "chmod 640 #{shared_path}/config/app_config.yml"
