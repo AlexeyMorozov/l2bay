@@ -5,7 +5,11 @@ class Shop < ActiveRecord::Base
 
   attr_accessible :server_id, :player, :pack, :sell, :seen_time, :loc_x, :loc_y, :loc_z
 
-  def location
-    @location ||= Location.find_by_coords(loc_x, loc_y, loc_z)
+  def location_name
+    @location_name ||= Location.find_by_coords(loc_x, loc_y, loc_z).try(:name) || "Look coords"
+  end
+
+  def coordinates
+    "#{loc_x} #{loc_y} #{loc_z}"
   end
 end
