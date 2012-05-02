@@ -5,9 +5,9 @@
   <%= f.input :email %>
   <%= f.input :password %>
 
-  <% if devise_mapping.rememberable? -%>
+  <% if devise_mapping.rememberable? %>
     <%= f.input :remember_me, as: :boolean, :input_html => { :checked => true } %>
-  <% end -%>
+  <% end %>
 
   <div class="form-actions">
     <%= f.button :submit, "Log in", class: 'btn-primary' %>

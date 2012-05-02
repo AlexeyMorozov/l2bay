@@ -13,7 +13,7 @@
 <% end %>
 
 <% if @items %>
-  <% if @items.count > 0 -%>
+  <% if @items.count > 0 %>
     <%= will_paginate @items, inner_window: 1, outer_window: 0 %>
     <% for item in @items %>
       <%= link_to item_path(current_server, item), class: 'searchItem' do %>
@@ -29,14 +29,14 @@
         </div>
       <% end %>
     <% end %>
-  <% else -%>
+  <% else %>
     <p>No results found.</p>
-  <% end -%>
-<% else -%>
+  <% end %>
+<% else %>
   <% if @products.count > 0 %>
     <div class="offers">
       <h2>New Products At Market</h2>
       <%= render partial: 'products', locals: {products: @products} %>
     </div>
-  <% end -%>
+  <% end %>
 <% end %>
