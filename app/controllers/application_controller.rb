@@ -7,11 +7,11 @@ class ApplicationController < ActionController::Base
     if @server
       @server
     elsif params[:server]
-      Server.find_by_name(params[:server].capitalize)
+      @server = Server.find_by_name(params[:server].capitalize)
     elsif cookies[:server_id]
-      Server.find(cookies[:server_id])
+      @server = Server.find(cookies[:server_id])
     else
-      Server.first
+      @server = Server.first
     end
   end
   helper_method :current_server
