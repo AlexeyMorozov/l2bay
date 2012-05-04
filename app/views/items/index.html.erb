@@ -32,11 +32,4 @@
   <% else %>
     <p>No results found.</p>
   <% end %>
-<% else %>
-  <% if @products.count > 0 %>
-    <div class="offers">
-      <h2>New Products At Market</h2>
-      <%= render partial: 'products', locals: {products: @products} %>
-    </div>
-  <% end %>
 <% end %>
