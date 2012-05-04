@@ -1,15 +1,21 @@
 .products {
-  .item, .seenTime {
-    width: 30%;
+  .enchant {
+    width: 15%;
   }
   .count {
-    width: 10%;
+    width: 15%;
   }
-  .price, .location {
-    width: 10%;
+  .price {
+    width: 15%;
+  }
+  .location {
+    width: 15%;
   }
   .player {
     width: 15%;
+  }
+  .seenTime {
+    width: 25%;
   }
 }
 

@@ -1,7 +1,9 @@
 <table class="table table-stripted products">
   <thead>
     <tr>
-      <th class="item">Item</th>
+      <% if has_enchant?(products) %>
+        <th class="enchant">Enchant</th>
+      <% end %>
       <th class="count">Count</th>
       <th class="price">Price</th>
       <th class="location">Location</th>
@@ -12,11 +14,9 @@
   <tbody>
     <% products.each do |p| %>
       <tr>
-        <td>
-          <abbr title="<%= p.to_s %>">
-            <%= truncate(p.to_s, omission: '..') %>
-          </abbr>
-        </td>
+        <% if has_enchant?(products) %>
+          <td>+<%= p.enchant %></td>
+        <% end %>
         <td>
           <abbr title="<%= number_with_delimiter p.count, delimiter: ' ' %>">
             <%= number_to_human p.count, units: :common %>
