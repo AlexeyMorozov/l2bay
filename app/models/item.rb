@@ -48,8 +48,8 @@ class Item
     id
   end
 
-  def products_from_server(server_id)
-    Product.includes(:shop).where(item_id: id, 'shops.server_id' => server_id, 'shops.pack' => false).order('shops.seen_time DESC').limit(50)
+  def products
+    Product.where(item_id: id)
   end
 
   def path_to_icon

@@ -11,7 +11,9 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @products = @item.products_from_server(current_server.id)
+    separate_products = @item.products.includes(:shop).from_server(current_server).separate.recent.limit(5)
+    @products_being_sold = separate_products.being_sold
+    @products_being_bought = separate_products.being_bought
   end
 
   private

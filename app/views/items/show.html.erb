@@ -1,8 +1,8 @@
 <% title(@item.name + (@item.sa.present? ? " [#{@item.sa}]" : '')) %>
 
-<% if @products.count > 0 %>
-  <h2>Products</h2>
-  <%= render partial: 'products', locals: {products: @products} %>
-<% else %>
+<%= products_block(@products_being_sold, "Products Being Sold") %>
+<%= products_block(@products_being_bought, "Products Being Being") %>
+
+<% unless products_found? %>
   <p>Still no products found..</p>
 <% end %>
