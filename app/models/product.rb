@@ -20,9 +20,11 @@ class Product < ActiveRecord::Base
   end
 
   def to_s
-    str = item.name
-    str += " [#{item.sa}]" if item.sa.present?
-    str += " +#{enchant}" if enchant > 0
+    str = ''
+    str << item.name
+    str << " +#{enchant}" if enchant > 0
+    str << " [#{item.sa}]" if item.sa.present?
+    str << " (#{count})" if count > 1
     str
   end
 end

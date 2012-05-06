@@ -1,8 +1,9 @@
 <% title(@item.name + (@item.sa.present? ? " [#{@item.sa}]" : '')) %>
 
-<%= products_block(@products_being_sold, "Products Being Sold") %>
-<%= products_block(@products_being_bought, "Products Being Being") %>
+<%= product_block(@products_being_sold, "Products Being Sold") %>
+<%= pack_block(@packs, "Packages", @item) %>
+<%= product_block(@products_being_bought, "Products Being Bought") %>
 
 <% unless products_found? %>
-  <p>Still no products found..</p>
+  <p>Still no product found..</p>
 <% end %>

@@ -4,11 +4,26 @@ module ItemsHelper
     options_for_select(server_urls, change_server_link)
   end
 
-  def products_block(products, heading)
+  def product_block(products, heading)
     if products.count > 0
       @products_found = true
-      content_tag(:h2, heading) + render(partial: 'products', locals: {products: products})
+      content_tag(:h2, heading) << render(partial: 'products', locals: {products: products})
     end
+  end
+
+  def pack_block(packs, heading, visible_item)
+    if packs.count > 0
+      @products_found = true
+      content_tag(:h2, heading) << render(partial: 'packs', locals: {packs: packs, visible_item: visible_item})
+    end
+  end
+
+  def visible_products(products, visible_item)
+    products.select { |p| p.item.id == visible_item.id }.map { |p| yield p }.join($\).html_safe
+  end
+
+  def hidden_products(products, visible_item)
+    products.select { |p| p.item.id != visible_item.id }.map { |p| yield p }.join($\).html_safe
   end
 
   def products_found?

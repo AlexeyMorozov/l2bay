@@ -1,0 +1,46 @@
+<table class="table table-stripted packs">
+  <thead>
+    <tr>
+      <th class="products">Products</th>
+      <th class="price">Price</th>
+      <th class="location">Location</th>
+      <th class="player">Player</th>
+      <th class="seenTime">Seen Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% packs.each do |pack| %>
+      <tr>
+        <td>
+          <%= visible_products(pack.products, visible_item) do |p| %>
+            <% content_tag :p, p %>
+          <% end %>
+          <% hidden_products = hidden_products(pack.products, visible_item) do |p| %>
+            <% content_tag :p, p %>
+          <% end %>
+          <% if hidden_products.present? %>
+            <div>
+              <%= link_to 'Show others', '#', class: 'others_toggler' %>
+              <%= link_to 'Hide', '#', class: 'others_toggler', style: "display: none;" %>
+              <div style="display: none;">
+                <%= hidden_products %>
+              </div>
+            </div>
+          <% end %>
+        </td>
+        <td>
+          <abbr title="<%= number_with_delimiter pack.price, delimiter: ' ' %>">
+            <%= number_to_human pack.price, units: :common %>
+          </abbr>
+        </td>
+        <td>
+          <abbr title="<%= "#{pack.location_name}: #{pack.coordinates}" %>">
+            <%= truncate(pack.location_name, length: 10, omission: '..') %>
+          </abbr>
+        </td>
+        <td><%= pack.player %></td>
+        <td><%= timeago pack.seen_time %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

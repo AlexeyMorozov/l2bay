@@ -3,7 +3,7 @@ class Shop < ActiveRecord::Base
 
   has_many :products
 
-  scope :packed, where(pack: false)
+  scope :packed, where(pack: true)
   scope :recent, order("seen_time DESC")
 
   attr_accessible :server_id, :player, :pack, :sell, :seen_time, :loc_x, :loc_y, :loc_z
@@ -22,5 +22,9 @@ class Shop < ActiveRecord::Base
 
   def coordinates
     "#{loc_x} #{loc_y} #{loc_z}"
+  end
+
+  def price
+    products.inject(0) {|sum, product| sum + product.price}
   end
 end
