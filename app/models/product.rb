@@ -12,7 +12,7 @@ class Product < ActiveRecord::Base
   attr_accessible :item_id, :count, :price, :enchant
 
   def self.from_server(server)
-    where(shops: {server_id: server.id})
+    joins(:shop).where(shops: {server_id: server.id})
   end
 
   def item

@@ -4,8 +4,6 @@ class ItemsController < ApplicationController
   def index
     if params[:query]
       @items = Item.paginated_search(params[:query], params)
-    else
-      @products = Product.includes(:shop).where('shops.server_id' => current_server.id).order('shops.seen_time DESC').limit(10).all
     end
   end
 
