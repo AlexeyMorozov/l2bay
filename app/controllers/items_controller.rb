@@ -9,8 +9,10 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+
     @products = @item.products.includes(:shop).from_server(current_server).separate.recent.limit(5)
-    pack_ids = Shop.packed.from_server(current_server).with_item(@item).recent.limit(10).pluck('shops.id')
+
+    pack_ids = @item.shops.from_server(current_server).packed.recent.limit(10).pluck('shops.id')
     @packs = Shop.includes(:products).find(pack_ids)
   end
 

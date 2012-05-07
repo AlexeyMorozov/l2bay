@@ -6,6 +6,14 @@ class Item
 
   attr_accessor :id, :name, :sa
 
+  def products
+    Product.where(item_id: id)
+  end
+
+  def shops
+    Shop.joins(:products).where(products: { item_id: id })
+  end
+
   def self.all
     @@cached.values
   end
@@ -46,10 +54,6 @@ class Item
 
   def to_param
     id
-  end
-
-  def products
-    Product.where(item_id: id)
   end
 
   def path_to_icon
