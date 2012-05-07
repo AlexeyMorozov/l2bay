@@ -62,7 +62,6 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/sphinx #{release_path}/sphinx"
     run "cd #{release_path} && rake thebes:build RAILS_ENV=production"
     run "ln -nfs #{shared_path}/static #{release_path}/static"
-    run "ln -nfs #{shared_path}/images/items #{release_path}/app/assets/images/items"
   end
   after "deploy:finalize_update", "deploy:symlink_shared"
 
@@ -76,7 +75,14 @@ namespace :deploy do
   end
   before "deploy", "deploy:check_revision"
 
+  task :append_icon_assets do
+    unless ENV['PRECOMPILE'] == "no"
+      run "cd #{shared_path}/assets && cat item_icons.yml >> manifest.yml"
+    end
+  end
+  after "deploy:assets:precompile", "deploy:append_icon_assets"
+
   namespace :assets do
-    task(:precompile) {} if ENV.has_key?('SKIP_PRECOMPILE')
+    task(:precompile) {} if ENV['PRECOMPILE'] == "no"
   end
 end
