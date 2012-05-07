@@ -25,6 +25,6 @@ class Shop < ActiveRecord::Base
   end
 
   def price
-    products.inject(0) {|sum, product| sum + product.price}
+    products.reduce(0) {|sum, product| sum + product.price}
   end
 end
