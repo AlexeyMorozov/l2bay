@@ -11,7 +11,7 @@
       <tr>
         <td>
           <% shop.products.each do |p| %>
-            <%= content_tag :p, p %>
+            <%= product(p) %>
           <% end %>
         </td>
         <td>

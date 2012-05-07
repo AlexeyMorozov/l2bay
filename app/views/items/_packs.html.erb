@@ -11,10 +11,10 @@
       <tr>
         <td>
           <%= visible_products(pack.products, visible_item) do |p| %>
-            <% content_tag :p, p %>
+            <% product(p) %>
           <% end %>
           <% hidden_products = hidden_products(pack.products, visible_item) do |p| %>
-            <% content_tag :p, p %>
+            <% product(p) %>
           <% end %>
           <% if hidden_products.present? %>
             <div>

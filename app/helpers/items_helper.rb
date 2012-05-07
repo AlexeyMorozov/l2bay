@@ -48,6 +48,14 @@ module ItemsHelper
     end
   end
 
+  def product(product)
+    content_tag :p do
+      content_tag :abbr, title: product do
+        truncate(product.to_s, omission: '..')
+      end
+    end
+  end
+
   private
 
   def change_server_link(server = current_server)
