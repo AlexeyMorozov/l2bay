@@ -42,6 +42,12 @@ module ItemsHelper
     products.detect { |p| p.enchant.present? && p.enchant != 0 }
   end
 
+  def price(price)
+    content_tag :abbr, title: number_with_delimiter(price, delimiter: ' ') do
+      number_to_human price, units: :common
+    end
+  end
+
   private
 
   def change_server_link(server = current_server)

@@ -32,4 +32,9 @@
   <% else %>
     <p>No results found.</p>
   <% end %>
+<% else %>
+  <% if @recent_shops.count > 0 %>
+    <h2 class="offers">Recent Shops</h2>
+    <%= render :partial => 'shops', :locals => { :shops => @recent_shops } %>
+  <% end %>
 <% end %>

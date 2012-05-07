@@ -1,0 +1,30 @@
+<table class="table table-stripted shops">
+  <thead>
+    <tr>
+      <th class="products">Products</th>
+      <th class="price">Price</th>
+      <%= render :partial => 'shop_titles' %>
+    </tr>
+  </thead>
+  <tbody>
+    <% shops.each do |shop| %>
+      <tr>
+        <td>
+          <% shop.products.each do |p| %>
+            <%= content_tag :p, p %>
+          <% end %>
+        </td>
+        <td>
+          <% if shop.pack %>
+            <%= price shop.price %>
+          <% else %>
+            <% shop.products.each do |p| %>
+              <%= content_tag :p, price(p.price) %>
+            <% end %>
+          <% end %>
+        </td>
+        <%= render :partial => 'shop_values', :locals => { :shop => shop } %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

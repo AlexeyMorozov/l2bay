@@ -1,6 +1,7 @@
 class Shop < ActiveRecord::Base
   establish_connection "game_#{Rails.env}"
 
+  belongs_to :servers
   has_many :products
 
   scope :packed, where(pack: true)

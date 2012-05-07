@@ -6,9 +6,7 @@
       <% end %>
       <th class="count">Count</th>
       <th class="price">Price</th>
-      <th class="location">Location</th>
-      <th class="player">Player</th>
-      <th class="seenTime">Seen Time</th>
+      <%= render :partial => 'shop_titles' %>
     </tr>
   </thead>
   <tbody>
@@ -23,17 +21,9 @@
           </abbr>
         </td>
         <td>
-          <abbr title="<%= number_with_delimiter p.price, delimiter: ' ' %>">
-            <%= number_to_human p.price, units: :common %>
-          </abbr>
+          <%= price(p.price) %>
         </td>
-        <td>
-          <abbr title="<%= "#{p.shop.location_name}: #{p.shop.coordinates}" %>">
-            <%= truncate(p.shop.location_name, length: 10, omission: '..') %>
-          </abbr>
-        </td>
-        <td><%= p.shop.player %></td>
-        <td><%= timeago p.shop.seen_time %></td>
+        <%= render :partial => 'shop_values', :locals => { :shop => p.shop } %>
       </tr>
     <% end %>
   </tbody>

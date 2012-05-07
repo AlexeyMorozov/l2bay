@@ -4,6 +4,8 @@ class ItemsController < ApplicationController
   def index
     if params[:query]
       @items = Item.paginated_search(params[:query], params)
+    else
+      @recent_shops = current_server.shops.includes(:products).recent.limit(3).all
     end
   end
 
