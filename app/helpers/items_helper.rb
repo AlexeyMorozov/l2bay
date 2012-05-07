@@ -4,6 +4,14 @@ module ItemsHelper
     options_for_select(server_urls, change_server_link)
   end
 
+  def being_sold(products)
+    products.select { |p| p.shop.sell }
+  end
+
+  def being_bought(products)
+    products.select { |p| !p.shop.sell }
+  end
+
   def product_block(products, heading)
     if products.count > 0
       @products_found = true
