@@ -12,16 +12,18 @@
 
 ##
 # Global Configuration
-# Add more (or remove) global configuration below
-Backup::Configuration::Storage::S3.defaults do |s3|
-  # s3.access_key_id     = "my_access_key_id"
-  # s3.secret_access_key = "my_secret_access_key"
-end
 
-Backup::Configuration::Encryptor::OpenSSL.defaults do |encryption|
-  # encryption.password = "my_password"
-  # encryption.base64   = true
-  # encryption.salt     = true
+APP_CONFIG = YAML.load(File.read(File.expand_path('../../config/app_config.yml', __FILE__)))
+
+Backup::Database::PostgreSQL.defaults do |db|
+  db.username           = "l2bay"
+  db.password           = APP_CONFIG['db_password']
+  db.host               = "localhost"
+  db.port               = 5432
+  db.additional_options = ["-xc", "-E=utf8"]
+  # Optional: Use to set the location of this utility
+  #   if it cannot be found by name in your $PATH
+  # db.pg_dump_utility = "/opt/local/bin/pg_dump"
 end
 
 ##

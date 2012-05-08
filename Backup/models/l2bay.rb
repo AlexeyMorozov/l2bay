@@ -1,18 +1,5 @@
 # encoding: utf-8
 
-APP_CONFIG = YAML.load(File.read(File.expand_path('../../config/app_config.yml', __FILE__)))
-
-Backup::Database::PostgreSQL.defaults do |db|
-  db.username           = "l2bay"
-  db.password           = APP_CONFIG['db_password']
-  db.host               = "localhost"
-  db.port               = 5432
-  db.additional_options = ["-xc", "-E=utf8"]
-  # Optional: Use to set the location of this utility
-  #   if it cannot be found by name in your $PATH
-  # db.pg_dump_utility = "/opt/local/bin/pg_dump"
-end
-
 ##
 # Backup Generated: l2bay
 # Once configured, you can run the backup with the following command:
