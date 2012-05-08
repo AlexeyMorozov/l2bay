@@ -56,7 +56,7 @@ GEM
       orm_adapter (~> 0.0.3)
       railties (~> 3.1)
       warden (~> 1.1.1)
-    dropbox-sdk (1.3)
+    dropbox-sdk (1.2)
       json
     erubis (2.7.0)
     execjs (1.3.1)
@@ -169,14 +169,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  backup
+  backup (~> 3.0.24)
   bootstrap-will_paginate
   capistrano
   coffee-rails (~> 3.2.1)
   devise
-  dropbox-sdk
+  dropbox-sdk (~> 1.2.0)
   jquery-rails
-  mail
+  mail (~> 2.4.0)
   nifty-generators
   pg
   rails (= 3.2.3)

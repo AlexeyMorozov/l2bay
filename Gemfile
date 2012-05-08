@@ -9,9 +9,9 @@ gem 'bootstrap-will_paginate'
 gem 'devise'
 gem 'simple_form'
 
-gem 'backup', require: false
-gem 'dropbox-sdk', require: false
-gem 'mail', require: false
+gem 'backup', '~> 3.0.24', require: false
+gem 'dropbox-sdk', '~> 1.2.0', require: false
+gem 'mail', '~> 2.4.0', require: false
 gem 'whenever', require: false
 
 group :assets do
