@@ -1,5 +1,7 @@
 require "bundler/capistrano"
 
+require "whenever/capistrano"
+
 server "l2bay.com", :web, :app, :db, primary: true
 
 set :application, "l2bay"
