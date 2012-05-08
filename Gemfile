@@ -8,6 +8,7 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'devise'
 gem 'simple_form'
+gem 'backup'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
