@@ -28,7 +28,9 @@ Backup::Model.new(:l2bay, 'Description for l2bay') do
 
   archive :l2bay do |archive|
     archive.add '/home/deployer/bin/uploads/'
-    archive.add '/home/deployer/bin/*.py'
+    archive.add '/home/deployer/bin/daemon.py'
+    archive.add '/home/deployer/bin/parser.py'
+    archive.add '/home/deployer/bin/receiver.py'
     archive.add '/home/deployer/list.pl'
     archive.add '/home/deployer/logs.cfg'
     archive.add '/etc/init.d/l2bay_receiver'
