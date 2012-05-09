@@ -3,6 +3,7 @@ set_default(:sphinx_pid) { "#{current_path}/tmp/pids/sphinx.pid" }
 set_default(:sphinx_config) { "#{shared_path}/config/sphinx.conf" }
 set_default(:sphinx_log) { "#{shared_path}/log/searchd.log" }
 set_default(:sphinx_query_log) { "#{shared_path}/log/searchd.query.log" }
+set_default(:sphinx_env) { "production" }
 
 namespace :sphinx do
   desc "Setup Sphinx initializer and app configuration"

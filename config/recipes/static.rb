@@ -1,7 +1,8 @@
 namespace :static do
   desc "Upload static files"
   task :upload do
-    run_locally "rsync -rvz static #{user}@#{server}:#{shared_path}/"
+    host = find_servers.first.host
+    run_locally "rsync -rvz static #{user}@#{host}:#{shared_path}/"
   end
   after "deploy:setup", "static:upload"
 

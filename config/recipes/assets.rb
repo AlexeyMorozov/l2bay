@@ -7,7 +7,7 @@ _cset :assets_role, [:web]
 _cset :normalize_asset_timestamps, false
 
 _cset :precompile, ENV['PRECOMPILE'] == "no" ? false : true
-_cset :precompile_without, ENV['PRECOMPILE_WITHOUT'].split(',')
+_cset :precompile_without, ENV['PRECOMPILE_WITHOUT'].to_s.split(',')
 
 before 'deploy:finalize_update', 'deploy:assets:symlink'
 after 'deploy:update_code', 'deploy:assets:precompile' if precompile

@@ -14,7 +14,7 @@ searchd
 source items_src
 {
   type = xmlpipe2
-  xmlpipe_command = cd <%= current_path %> && bundle exec rake xmlpipe:items
+  xmlpipe_command = cd <%= current_path %> && bundle exec rake xmlpipe:items RAILS_ENV=<%= sphinx_env %>
 }
 
 index items

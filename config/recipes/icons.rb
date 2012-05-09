@@ -1,8 +1,9 @@
 namespace :icons do
   desc "Upload icons"
   task :upload do
+    host = find_servers.first.host
     run "mkdir -p #{shared_path}/images"
-    run_locally "rsync -rvz app/assets/images/items #{user}@#{server}:#{shared_path}/images/"
+    run_locally "rsync -rvz app/assets/images/items #{user}@#{host}:#{shared_path}/images/"
   end
   after "deploy:setup", "icons:upload"
 
