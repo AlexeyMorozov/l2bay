@@ -36,6 +36,7 @@ namespace :deploy do
     run "mkdir -p #{shared_path}/config"
     run "touch #{shared_path}/config/app_config.yml"
     run "chmod 640 #{shared_path}/config/app_config.yml"
+    run "mkdir -p #{shared_path}/backup"
   end
   after "deploy:setup", "deploy:setup_configs"
 

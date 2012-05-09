@@ -1,23 +1,8 @@
 # encoding: utf-8
 
-##
-# Backup Generated: l2bay
-# Once configured, you can run the backup with the following command:
-#
-# $ backup perform -t l2bay [-c <path_to_configuration_file>]
-#
 Backup::Model.new(:l2bay, 'Description for l2bay') do
-  ##
-  # Split [Splitter]
-  #
-  # Split the backup file in to chunks of 250 megabytes
-  # if the backup file size exceeds 250 megabytes
-  #
   split_into_chunks_of 250
 
-  ##
-  # PostgreSQL [Database]
-  #
   database PostgreSQL do |db|
     db.name = "l2bay_production"
   end
@@ -36,40 +21,17 @@ Backup::Model.new(:l2bay, 'Description for l2bay') do
     archive.add '/etc/init.d/l2bay_receiver'
   end
 
-  ##
-  # Dropbox File Hosting Service [Storage]
-  #
-  # Access Type:
-  #
-  #  - :app_folder (Default)
-  #  - :dropbox
-  #
-  # Note:
-  #
-  #  Initial backup must be performed manually to authorize
-  #  this machine with your Dropbox account.
-  #
   store_with Dropbox do |db|
     db.api_key     = APP_CONFIG['dropbox_key']
     db.api_secret  = APP_CONFIG['dropbox_secret']
     db.access_type = :app_folder
-    db.path        = "/home/deployer/backups"
+    db.path        = "/backups"
   end
 
-  ##
-  # Gzip [Compressor]
-  #
   compress_with Gzip
 
-  ##
-  # Mail [Notifier]
-  #
-  # The default delivery method for Mail Notifiers is 'SMTP'.
-  # See the Wiki for other delivery options.
-  # https://github.com/meskyanichi/backup/wiki/Notifiers
-  #
   notify_by Mail do |mail|
-    mail.on_success           = true
+    mail.on_success           = false
     mail.on_warning           = true
     mail.on_failure           = true
 
@@ -78,8 +40,6 @@ Backup::Model.new(:l2bay, 'Description for l2bay') do
     mail.address              = "localhost"
     mail.port                 = 25
     mail.domain               = "l2bay.com"
-    mail.authentication       = "plain"
     mail.enable_starttls_auto = false
   end
-
 end
