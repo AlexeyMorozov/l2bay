@@ -1,0 +1,26 @@
+indexer
+{
+  mem_limit = 96M
+}
+
+searchd
+{
+  listen = 127.0.0.1:9312
+  log = <%= sphinx_log %>
+  query_log = <%= sphinx_query_log %>
+  pid_file = <%= sphinx_pid %>
+}
+
+source items_src
+{
+  type = xmlpipe2
+  xmlpipe_command = cd <%= current_path %> && bundle exec rake xmlpipe:items
+}
+
+index items
+{
+  source = items_src
+  path = <%= current_path %>/db/sphinx/items
+  charset_type = utf-8
+  min_infix_len = 2
+}

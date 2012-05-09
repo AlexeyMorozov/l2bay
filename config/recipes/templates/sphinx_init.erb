@@ -1,0 +1,64 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          sphinxsearch
+# Required-Start:    $local_fs $remote_fs $syslog $network $time
+# Required-Stop:     $local_fs $remote_fs $syslog $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Fast standalone full-text SQL search engine
+# Description:       Start, stop, restart sphinx daemon for a specific application.
+### END INIT INFO
+set -e
+
+TIMEOUT=${TIMEOUT-60}
+APP_ROOT=<%= current_path %>
+PID=<%= sphinx_pid %>
+CONFIG=<%= sphinx_config %>
+SEARCHD="searchd --config $CONFIG"
+INDEXER="indexer --config $CONFIG --all"
+AS_USER=<%= sphinx_user %>
+set -u
+
+sig () {
+  test -s "$PID" && kill -$1 `cat $PID`
+}
+
+run () {
+  if [ "$(id -un)" = "$AS_USER" ]; then
+    eval $1
+  else
+    su -c "$1" - $AS_USER
+  fi
+}
+
+case "$1" in
+start)
+  sig 0 && echo >&2 "Already running" && exit 0
+  run "$SEARCHD"
+  ;;
+stop)
+  sig QUIT && exit 0
+  echo >&2 "Not running"
+  ;;
+force-stop)
+  sig TERM && exit 0
+  echo >&2 "Not running"
+  ;;
+restart|reload)
+  sig HUP && echo "Reloaded" && exit 0
+  echo >&2 "Couldn't reload, starting '$SEARCHD' instead"
+  run "$SEARCHD"
+  ;;
+reindex)
+  if sig 0
+  then
+    run "$INDEXER --rotate"
+  else
+    run "$INDEXER"
+  fi
+	;;
+*)
+  echo >&2 "Usage: $0 <start|stop|restart|force-stop|reindex>"
+  exit 1
+  ;;
+esac

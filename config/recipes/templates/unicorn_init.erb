@@ -1,8 +1,21 @@
 #!/bin/sh
+### BEGIN INIT INFO
+# Provides:          unicorn
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Manage unicorn server
+# Description:       Start, stop, restart unicorn server for a specific application.
+### END INIT INFO
+set -e
 
-APP_ROOT=/home/deployer/apps/l2bay/current
-PID=$APP_ROOT/tmp/pids/unicorn.pid
-CMD="cd $APP_ROOT; bundle exec unicorn -D -c $APP_ROOT/config/unicorn.rb -E production"
+TIMEOUT=${TIMEOUT-60}
+APP_ROOT=<%= current_path %>
+PID=<%= unicorn_pid %>
+CMD="cd <%= current_path %>; bundle exec unicorn -D -c <%= unicorn_config %> -E production"
+AS_USER=<%= unicorn_user %>
+set -u
 
 OLD_PIN="$PID.oldbin"
 
@@ -15,7 +28,11 @@ oldsig () {
 }
 
 run () {
-	eval $1
+  if [ "$(id -un)" = "$AS_USER" ]; then
+    eval $1
+  else
+    su -c "$1" - $AS_USER
+  fi
 }
 
 case "$1" in
@@ -32,7 +49,7 @@ force-stop)
   echo >&2 "Not running"
   ;;
 restart|reload)
-  sig HUP && echo reloaded OK && exit 0
+  sig HUP && echo "Reloaded" && exit 0
   echo >&2 "Couldn't reload, starting '$CMD' instead"
   run "$CMD"
   ;;
