@@ -40,9 +40,9 @@ class Item
     per_page = (options[:per_page] || 10).to_i
     WillPaginate::Collection.create(page, per_page) do |pager|
       sphinx_res = sphinx_search(query, {offset: pager.offset, limit: pager.per_page})
-      ids = sphinx_res[0][:matches].map {|m| m[:doc]}
+      ids = sphinx_res[:matches].map {|m| m[:doc]}
       pager.replace(find(ids))
-      pager.total_entries = sphinx_res[0][:total]
+      pager.total_entries = sphinx_res[:total]
     end
   end
 
@@ -71,10 +71,9 @@ class Item
     end
 
     def self.sphinx_search(query, options = {})
-      Thebes::Query.run do |q|
-        q.offset = options[:offset] if options[:offset]
-        q.limit = options[:limit] if options[:limit]
-        q.append_query query, 'items'
-      end
+      client = Riddle::Client.new
+      client.offset = options[:offset] if options[:offset]
+      client.limit = options[:limit] if options[:limit]
+      client.query query, 'items'
     end
 end
