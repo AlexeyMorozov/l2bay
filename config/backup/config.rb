@@ -1,10 +1,12 @@
 # encoding: utf-8
 
+# override all CLI paths
 app_root = File.expand_path('../../..', __FILE__)
 update(
-  root_path: File.expand_path('../../shared/backup/', app_root),
-  log_path:  File.expand_path('log/', app_root),
-  tmp_path:  File.expand_path('tmp/backup/', app_root)
+  root_path:   File.expand_path('../../shared/backup/', app_root),
+  config_path: File.expand_path('config/backup/config.rb', app_root),
+  log_path:    File.expand_path('log/', app_root),
+  tmp_path:    File.expand_path('tmp/backup/', app_root)
 )
 
 APP_CONFIG = YAML.load(File.read(File.expand_path('config/app_config.yml', app_root)))
