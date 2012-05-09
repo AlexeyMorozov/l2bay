@@ -1,6 +1,13 @@
 # encoding: utf-8
 
-APP_CONFIG = YAML.load(File.read(File.expand_path('../../config/app_config.yml', __FILE__)))
+app_root = File.expand_path('../..')
+update(
+  root_path: File.expand_path('../shared/backup/', app_root),
+  log_path:  File.expand_path('log/', app_root),
+  tmp_path:  File.expand_path('tmp/backup/', app_root)
+)
+
+APP_CONFIG = YAML.load(File.read(File.expand_path('config/app_config.yml', app_root)))
 
 Backup::Database::PostgreSQL.defaults do |db|
   db.username           = "l2bay"
