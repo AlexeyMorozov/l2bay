@@ -9,14 +9,10 @@ db_base: &db_base
 <%= env %>:
   <<: *db_base
   database: l2bay_<%= env %>
-  <% if env == 'production' %>
   password: <%= APP_CONFIG['db_password'] %>
-  <% end %>
 
 game_<%= env %>:
   <<: *db_base
   database: l2bay_game_<%= env %>
-  <% if env == 'production' %>
   password: <%= APP_CONFIG['db_password'] %>
-  <% end %>
 <% end %>
