@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-app_root = File.expand_path('../..')
+app_root = File.expand_path('../..', __FILE__)
 update(
   root_path: File.expand_path('../shared/backup/', app_root),
   log_path:  File.expand_path('log/', app_root),
