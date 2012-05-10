@@ -11,7 +11,7 @@ namespace :static do
           items[id] = Item.new({ id: id, name: name, sa: sa })
         end
       end
-      File.open(Rails.root.join('static', 'items.yml'), 'w') {|f| f.write(YAML.dump(items)) }
+      File.open(Rails.root.join('static', 'items.yml'), 'w').write(YAML.dump(items))
     end
   end
 end
