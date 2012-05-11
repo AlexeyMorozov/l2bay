@@ -3,6 +3,7 @@ namespace :nginx do
   task :setup, roles: :web do
     template "nginx.conf.erb", "/tmp/nginx_conf"
     run "#{sudo} mv /tmp/nginx_conf /etc/nginx/sites-enabled/#{application}"
+    run "#{sudo} chown root:root $_"
     run "#{sudo} rm -f /etc/nginx/sites-enabled/default"
     restart
   end

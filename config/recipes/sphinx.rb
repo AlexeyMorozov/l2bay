@@ -14,6 +14,7 @@ namespace :sphinx do
     template "sphinx_init.erb", "/tmp/sphinx_init"
     run "chmod +x /tmp/sphinx_init"
     run "#{sudo} mv /tmp/sphinx_init /etc/init.d/sphinx_#{application}"
+    run "#{sudo} chown root:root $_"
     run "#{sudo} update-rc.d -f sphinx_#{application} defaults"
   end
   after "deploy:setup", "sphinx:setup"
