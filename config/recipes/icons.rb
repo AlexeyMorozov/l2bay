@@ -3,13 +3,13 @@ namespace :icons do
   task :upload do
     host = find_servers.first.host
     run "mkdir -p #{shared_path}/icons"
-    run_locally "rsync -rvz app/assets/icons/items #{user}@#{host}:#{shared_path}/icons/"
+    run_locally "rsync -rvz app/assets/images/items #{user}@#{host}:#{shared_path}/icons/"
   end
   after "deploy:setup", "icons:upload"
 
   desc "Symlink icons"
   task :symlink do
-    run "ln -nfs #{shared_path}/icons/items #{release_path}/app/assets/icons/items"
+    run "ln -nfs #{shared_path}/icons/items #{release_path}/app/assets/images/items"
   end
   before "deploy:assets:precompile", "icons:symlink" unless precompile_without.include?('icons')
 
