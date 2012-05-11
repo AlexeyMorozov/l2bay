@@ -13,9 +13,6 @@ server {
   server_name l2bay.com;
   root <%= current_path %>/public;
 
-  access_log <%= current_path %>/log/nginx.access.log main;
-  error_log <%= current_path %>/log/nginx.error.log warn;
-
   location ^~ /assets/ {
     gzip_static on;
     expires max;
