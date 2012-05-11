@@ -30,6 +30,5 @@ namespace :sphinx do
     task command, roles: :app do
       run "service sphinx_#{application} #{command}"
     end
-    after "deploy:#{command}", "sphinx:#{command}"
   end
 end
