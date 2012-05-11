@@ -2,8 +2,7 @@ namespace :nginx do
   desc "Setup nginx configuration for this application"
   task :setup, roles: :web do
     template "nginx.conf.erb", "/tmp/nginx_conf"
-    run "#{sudo} mv /tmp/nginx_conf /etc/nginx/sites-enabled/#{application}"
-    run "#{sudo} chown root:root $_"
+    run "#{sudo} mv /tmp/nginx_conf /etc/nginx/sites-enabled/#{application} && #{sudo} chown root:root $_"
     run "#{sudo} rm -f /etc/nginx/sites-enabled/default"
     restart
   end
