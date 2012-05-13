@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120513104137) do
+ActiveRecord::Schema.define(:version => 20120513111417) do
+
+  create_table "accounts", :force => true do |t|
+    t.integer "user_id"
+    t.integer "points",  :limit => 8
+  end
+
+  add_index "accounts", ["user_id"], :name => "index_accounts_on_user_id"
+
+  create_table "logs", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "log_type"
+    t.binary   "data"
+    t.datetime "created_at"
+  end
+
+  add_index "logs", ["user_id", "created_at"], :name => "index_logs_on_user_id_and_created_at"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
