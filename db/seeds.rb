@@ -1,9 +1,12 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-Server.delete_all
-Server.create!([{ name: 'Chronos', }, { name: 'Naia' }, { name: 'Shilen' }, { name: 'Magmeld' }, { name: 'Bartz' }])
+servers = {
+  'Chronos' => '64.25.37.132',
+  'Naia' => '64.25.37.133',
+  'Shilen' => '64.25.37.134',
+  'Magmeld' => '64.25.37.135',
+  'Bartz' => '64.25.37.136',
+}
+servers.each do |name, ip|
+  s = Server.find_or_initialize_by_name(name)
+  s.ip = ip
+  s.save!
+end
