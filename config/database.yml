@@ -3,16 +3,13 @@ db_base: &db_base
   encoding: utf-8
   host: localhost
   username: l2bay
-  pool: 5
+  password: <%= APP_CONFIG['db_password'] %>
 
 <% %w(development test production).each do |env| %>
 <%= env %>:
   <<: *db_base
   database: l2bay_<%= env %>
-  password: <%= APP_CONFIG['db_password'] %>
-
-game_<%= env %>:
-  <<: *db_base
-  database: l2bay_game_<%= env %>
-  password: <%= APP_CONFIG['db_password'] %>
+  game:
+    <<: *db_base
+    database: l2bay_game_<%= env %>
 <% end %>

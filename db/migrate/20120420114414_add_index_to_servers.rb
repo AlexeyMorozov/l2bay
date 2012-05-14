@@ -1,7 +1,5 @@
 class AddIndexToServers < ActiveRecord::Migration
-  def connection
-    Server.connection
-  end
+  db_magic connection: :game
 
   def change
     add_index :servers, :name

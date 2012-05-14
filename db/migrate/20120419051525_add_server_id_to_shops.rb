@@ -1,7 +1,5 @@
 class AddServerIdToShops < ActiveRecord::Migration
-  def connection
-    Shop.connection
-  end
+  db_magic connection: :game
 
   def change
     add_column :shops, :server_id, :integer

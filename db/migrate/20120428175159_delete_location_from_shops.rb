@@ -1,7 +1,5 @@
 class DeleteLocationFromShops < ActiveRecord::Migration
-  def connection
-    Shop.connection
-  end
+  db_magic connection: :game
 
   def up
     remove_column :shops, :location

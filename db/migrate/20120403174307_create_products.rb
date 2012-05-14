@@ -1,7 +1,5 @@
 class CreateProducts < ActiveRecord::Migration
-  def connection
-    Product.connection
-  end
+  db_magic connection: :game
 
   def change
     create_table :products do |t|

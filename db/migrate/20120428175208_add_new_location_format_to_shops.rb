@@ -1,7 +1,5 @@
 class AddNewLocationFormatToShops < ActiveRecord::Migration
-  def connection
-    Shop.connection
-  end
+  db_magic connection: :game
 
   def change
     add_column :shops, :loc_x, :integer

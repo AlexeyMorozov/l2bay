@@ -1,7 +1,5 @@
 class DropUnnecessaryTimestamps < ActiveRecord::Migration
-  def connection
-    Shop.connection
-  end
+  db_magic connection: :game
 
   def change
     remove_timestamps :servers

@@ -1,7 +1,5 @@
 class AddSellToShops < ActiveRecord::Migration
-  def connection
-    Shop.connection
-  end
+  db_magic connection: :game
 
   def change
     add_column :shops, :sell, :boolean

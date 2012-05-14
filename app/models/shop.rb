@@ -1,5 +1,5 @@
 class Shop < ActiveRecord::Base
-  establish_connection "game_#{Rails.env}"
+  switch_connection_to :game
 
   belongs_to :servers
   has_many :products
