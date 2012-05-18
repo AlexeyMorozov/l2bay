@@ -2,6 +2,7 @@ L2bay::Application.routes.draw do
   devise_for :users
   get "software" => "software#index"
   get "software/download"
+  resources :logs
   resources :user_ids
   scope ":server" do
     resources :items

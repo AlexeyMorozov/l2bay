@@ -2,26 +2,16 @@
 
 <table>
   <tr>
-    <th>User</th>
-    <th>Log type</th>
-    <th>Data</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Date</th>
+    <th>Title</th>
+    <th>Description</th>
   </tr>
 
 <% @logs.each do |log| %>
   <tr>
-    <td><%= log.user_id %></td>
-    <td><%= log.log_type %></td>
-    <td><%= log.data %></td>
-    <td><%= link_to 'Show', log %></td>
-    <td><%= link_to 'Edit', edit_log_path(log) %></td>
-    <td><%= link_to 'Destroy', log, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= timeago log.created_at %></td>
+    <td><%= log.title %></td>
+    <td><%= log.description %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Log', new_log_path %>
