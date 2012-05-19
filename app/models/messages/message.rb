@@ -1,12 +1,14 @@
 class Message
   include ActionView::Helpers::TextHelper
 
-  MESSAGES = [
-    AddedPointsMessage,
-  ]
+  def self.messages
+    [
+      AddedPointsMessage,
+    ]
+  end
 
   def self.create(type)
-    m = MESSAGES.detect { |m| m::LOG_TYPE == type }
+    m = messages.detect { |m| m::LOG_TYPE == type }
     m.new
   end
 
