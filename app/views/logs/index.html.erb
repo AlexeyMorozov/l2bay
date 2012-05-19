@@ -1,17 +1,21 @@
-<h1>Listing logs</h1>
+<h1>Logs</h1>
 
-<table>
-  <tr>
-    <th>Date</th>
-    <th>Title</th>
-    <th>Description</th>
-  </tr>
+<table class="table table-stripted logs">
+  <thead>
+    <tr>
+      <th class="date">Date</th>
+      <th class="title">Title</th>
+      <th class="description">Description</th>
+    </tr>
+  </thead>
 
-<% @logs.each do |log| %>
-  <tr>
-    <td><%= timeago log.created_at %></td>
-    <td><%= log.title %></td>
-    <td><%= log.description %></td>
-  </tr>
-<% end %>
+  <tbody>
+    <% @logs.each do |log| %>
+      <tr>
+        <td><%= timeago log.created_at %></td>
+        <td><%= log.title %></td>
+        <td><%= log.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
