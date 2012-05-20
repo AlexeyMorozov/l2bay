@@ -1,21 +1,25 @@
 <h1>Logs</h1>
 
-<table class="table table-stripted logs">
-  <thead>
-    <tr>
-      <th class="date">Date</th>
-      <th class="title">Title</th>
-      <th class="description">Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @logs.each do |log| %>
+<% if @logs.count > 0 %>
+  <table class="table table-stripted logs">
+    <thead>
       <tr>
-        <td><%= timeago log.created_at %></td>
-        <td><%= log.title %></td>
-        <td><%= log.description %></td>
+        <th class="date">Date</th>
+        <th class="title">Title</th>
+        <th class="description">Description</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @logs.each do |log| %>
+        <tr>
+          <td><%= timeago log.created_at %></td>
+          <td><%= log.title %></td>
+          <td><%= log.description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>You haven't any log yet.</p>
+<% end %>
