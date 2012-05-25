@@ -5,7 +5,7 @@ class SoftwareController < ApplicationController
 
   def download
     if user_signed_in?
-      send_file Rails.root.join("static/updater.exe"), filename: "#{current_user.email}.exe"
+      send_file Rails.root.join("static/updater.exe"), filename: "#{current_user.email}@.exe"
     else
       redirect_to action: 'index'
     end
