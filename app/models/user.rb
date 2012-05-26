@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :logs
-  has_one :account
+  has_one :account, :dependent => :destroy
   before_create :build_account
 
   # Setup accessible (or protected) attributes for your model
