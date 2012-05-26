@@ -14,15 +14,15 @@
 ActiveRecord::Schema.define(:version => 20120513111417) do
 
   create_table "accounts", :force => true do |t|
-    t.integer "user_id"
+    t.integer "user_id",                             :null => false
     t.integer "points",  :limit => 8, :default => 0, :null => false
   end
 
   create_table "logs", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "log_type"
-    t.binary   "data"
-    t.datetime "created_at"
+    t.integer  "user_id",    :null => false
+    t.integer  "log_type",   :null => false
+    t.binary   "data",       :null => false
+    t.datetime "created_at", :null => false
   end
 
   create_table "users", :force => true do |t|
