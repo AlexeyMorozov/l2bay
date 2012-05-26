@@ -6,7 +6,5 @@ class CreateLogs < ActiveRecord::Migration
       t.binary :data
       t.datetime :created_at
     end
-
-    add_index :logs, [:user_id, :created_at]
   end
 end

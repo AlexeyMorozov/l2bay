@@ -4,8 +4,7 @@ class CreateServers < ActiveRecord::Migration
   def change
     create_table :servers do |t|
       t.string :name
-
-      t.timestamps
+      t.integer :ip
     end
   end
 end

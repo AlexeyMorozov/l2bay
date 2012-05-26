@@ -8,11 +8,6 @@ class CreateProducts < ActiveRecord::Migration
       t.integer :count, :limit => 8
       t.integer :price, :limit => 8
       t.integer :enchant
-
-      t.timestamps
     end
-
-    add_index :products, :shop_id
-    add_index :products, :item_id
   end
 end

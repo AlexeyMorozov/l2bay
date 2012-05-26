@@ -4,7 +4,5 @@ class CreateAccounts < ActiveRecord::Migration
       t.integer :user_id
       t.integer :points, :limit => 8, null: false, default: 0
     end
-
-    add_index :accounts, :user_id
   end
 end
