@@ -9,7 +9,7 @@ db_base: &db_base
 <%= env %>:
   <<: *db_base
   database: l2bay_<%= env %>
-  game:
-    <<: *db_base
-    database: l2bay_game_<%= env %>
+game_<%= env %>:
+  <<: *db_base
+  database: l2bay_game_<%= env %>
 <% end %>

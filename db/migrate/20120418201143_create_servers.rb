@@ -1,6 +1,4 @@
-class CreateServers < ActiveRecord::Migration
-  db_magic connection: :game
-
+class CreateServers < GameDbMigration
   def change
     create_table :servers do |t|
       t.string :name

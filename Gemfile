@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'db-charmer', :require => 'db_charmer'
 gem 'pg'
 gem 'jquery-rails'
 gem 'riddle'

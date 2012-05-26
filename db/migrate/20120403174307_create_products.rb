@@ -1,6 +1,4 @@
-class CreateProducts < ActiveRecord::Migration
-  db_magic connection: :game
-
+class CreateProducts < GameDbMigration
   def change
     create_table :products do |t|
       t.integer :shop_id

@@ -1,6 +1,4 @@
-class Shop < ActiveRecord::Base
-  switch_connection_to :game
-
+class Shop < GameDb
   belongs_to :servers
   has_many :products
 

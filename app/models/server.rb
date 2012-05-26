@@ -1,8 +1,6 @@
 require 'ipaddr'
 
-class Server < ActiveRecord::Base
-  switch_connection_to :game
-
+class Server < GameDb
   has_many :shops
 
   attr_accessible :name, :ip

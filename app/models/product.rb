@@ -1,6 +1,4 @@
-class Product < ActiveRecord::Base
-  switch_connection_to :game
-
+class Product < GameDb
   belongs_to :shop
 
   scope :being_sold, joins(:shop).where(shops: {sell: true})
