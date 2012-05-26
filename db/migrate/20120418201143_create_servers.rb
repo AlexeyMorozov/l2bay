@@ -4,5 +4,7 @@ class CreateServers < GameDbMigration
       t.string :name, null: false
       t.integer :ip, null: false
     end
+    add_index :servers, :name
+    add_index :servers, :ip
   end
 end

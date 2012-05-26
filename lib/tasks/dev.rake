@@ -3,7 +3,7 @@ namespace :dev do
     Shop.delete_all
     Product.delete_all
     ActiveRecord::Base.transaction do
-      1000.times { |i| Shop.create!({
+      10.times { |i| Shop.create!({
         server_id: Server.first.id, player: "Aragorn#{i}", pack: (i % 4 == 0 ? true : false), sell: (i % 2 == 0 ? true : false), seen_time: Time.zone.now - 1.hour, loc_x: 1, loc_y: 2, loc_z: 3
       }).products.create([
         {item_id: 6608, count: 1, price: 87000100, enchant: 1},

@@ -7,5 +7,7 @@ class CreateProducts < GameDbMigration
       t.integer :price, :limit => 8, null: false
       t.integer :enchant, null: false
     end
+    add_index :products, :shop_id
+    add_index :products, [:item_id, :shop_id]
   end
 end

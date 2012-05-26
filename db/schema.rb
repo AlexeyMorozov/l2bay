@@ -18,12 +18,16 @@ ActiveRecord::Schema.define(:version => 20120513111417) do
     t.integer "points",  :limit => 8, :default => 0, :null => false
   end
 
+  add_index "accounts", ["user_id"], :name => "index_accounts_on_user_id"
+
   create_table "logs", :force => true do |t|
     t.integer  "user_id",    :null => false
     t.integer  "log_type",   :null => false
     t.binary   "data",       :null => false
     t.datetime "created_at", :null => false
   end
+
+  add_index "logs", ["user_id", "created_at"], :name => "index_logs_on_user_id_and_created_at"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

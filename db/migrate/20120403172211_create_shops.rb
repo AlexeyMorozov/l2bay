@@ -10,5 +10,7 @@ class CreateShops < GameDbMigration
       t.integer :loc_y, null: false
       t.integer :loc_z, null: false
     end
+    add_index :shops, :player
+    add_index :shops, :seen_time
   end
 end
