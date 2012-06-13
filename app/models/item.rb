@@ -4,7 +4,7 @@ class Item
   @@cache_file = Rails.root.join('static', 'items.yml')
   @@cached = YAML::load(File.open(@@cache_file, 'r')) if File.exists?(@@cache_file)
 
-  attr_accessor :id, :name, :sa
+  attr_accessor :id, :name, :sa, :position_by_name
 
   def products
     Product.where(item_id: id)
@@ -60,6 +60,12 @@ class Item
     "items/#{id}.png"
   end
 
+  def display_name
+    str = name
+    str << " [#{sa}]" if sa.present?
+    str
+  end
+
   private
 
     def self.find_one(id)
@@ -74,6 +80,8 @@ class Item
       client = Riddle::Client.new
       client.offset = options[:offset] if options[:offset]
       client.limit = options[:limit] if options[:limit]
+      client.sort_mode = :extended
+      client.sort_by = 'position_by_name ASC'
       client.query query, 'items'
     end
 end

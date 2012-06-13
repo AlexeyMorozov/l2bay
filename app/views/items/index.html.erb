@@ -19,10 +19,7 @@
       <%= link_to item_path(current_server, item), class: 'searchItem' do %>
         <div class="itemIcon"><%= image_tag item.path_to_icon rescue nil %></div>
         <div class="itemName">
-          <%= item.name %>
-          <% if item.sa.present? %>
-            [<%= item.sa %>]
-          <% end %>
+          <%= item.display_name %>
           <% show_unless_zero item.products.from_server(current_server).count do |count| %>
             <strong>(<%= pluralize(count, "record") %>)</strong>
           <% end %>
