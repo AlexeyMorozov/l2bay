@@ -69,11 +69,11 @@ class Item
   private
 
     def self.find_one(id)
-      @@cached[id.to_i] || raise(ActiveRecord::RecordNotFound)
+      @@cached[id.to_i]
     end
 
     def self.find_some(ids)
-      ids.map {|id| find_one(id)}
+      ids.map {|id| find_one(id)}.compact
     end
 
     def self.sphinx_search(query, options = {})
