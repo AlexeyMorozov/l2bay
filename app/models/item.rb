@@ -14,6 +14,10 @@ class Item
     Shop.joins(:products).where(products: { item_id: id })
   end
 
+  def self.unknown_item(id)
+    Item.new({ id: id, name: 'Unknown item', sa: '' })
+  end
+
   def self.all
     @@cached.values
   end
@@ -69,7 +73,7 @@ class Item
   private
 
     def self.find_one(id)
-      @@cached[id.to_i]
+      @@cached[id.to_i] || unknown_item(id)
     end
 
     def self.find_some(ids)
