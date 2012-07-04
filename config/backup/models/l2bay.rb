@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 Backup::Model.new(:l2bay, 'Description for l2bay') do
-  split_into_chunks_of 250
+  split_into_chunks_of 50
 
   database PostgreSQL do |db|
     db.name = "l2bay_production"
@@ -26,6 +26,7 @@ Backup::Model.new(:l2bay, 'Description for l2bay') do
     db.api_secret  = APP_CONFIG['dropbox_secret']
     db.access_type = :app_folder
     db.path        = "/backups"
+    db.keep        = 30
   end
 
   compress_with Gzip
