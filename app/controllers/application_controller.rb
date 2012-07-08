@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     elsif cookies[:server_id]
       @server = Server.find(cookies[:server_id])
     else
-      @server = Server.find(2)
+      @server = Server.find(3)
     end
   end
   helper_method :current_server
