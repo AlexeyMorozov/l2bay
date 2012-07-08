@@ -51,7 +51,7 @@ module ItemsHelper
   def product(product)
     content_tag :p do
       content_tag :abbr, title: product do
-        name = truncate(product.to_s, omission: '..')
+        name = truncate(product.to_s, length: 28, omission: '..')
         link_to name, item_path(current_server, product.item)
       end
     end
