@@ -2,10 +2,26 @@ html {
   overflow-y: scroll;
 }
 
+.navbar .brand {
+  padding-left: 60px;
+  background-image: image-url("small_logo.png");
+  background-repeat: no-repeat;
+  background-position: 20px;
+}
+
 h1 {
   margin-bottom: 10px;
 }
 
-footer p {
-  text-align: center;
+footer {
+  p.copyright {
+    float :left;
+    padding-left: 150px;
+    font-size: 12px;
+  }
+  p.logo_icon_author {
+    float: right;
+    padding-right: 200px;
+    font-size: 10px;
+  }
 }
